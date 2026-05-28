@@ -7,3 +7,6 @@ dist/
 .env
 .env.*
 supabase/.env.*
+.vercel
+.env*.local
+supabase/.temp/
