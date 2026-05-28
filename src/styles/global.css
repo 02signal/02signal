@@ -788,6 +788,22 @@ textarea {
   margin-bottom: 20px;
 }
 
+.diagnostic-start h3 {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+}
+
+.diagnostic-start p {
+  color: var(--muted);
+}
+
+.start-consent {
+  margin-top: 6px;
+}
+
+.diagnostic-start .btn {
+  margin-top: 18px;
+}
+
 .hidden-field {
   position: absolute;
   left: -9999px;

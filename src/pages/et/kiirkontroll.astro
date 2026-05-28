@@ -86,65 +86,78 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
 
           <form class="diagnostic-form" data-diagnostic-form>
             <input class="hidden-field" type="text" name="website" tabindex="-1" autocomplete="off" />
-            <div class="form-grid diagnostic-contact">
-              <div class="field">
-                <label for="company">Ettevõte *</label>
-                <input id="company" name="company" required autocomplete="organization" />
+            <div class="diagnostic-start" data-contact-step>
+              <h3>Jätke kontakt ja alustage küsimustikku.</h3>
+              <p>
+                Nii saame teie pooleli jäänud vastuse üles leida ja hiljem tulemust koos teiega läbi vaadata.
+                Küsimused tulevad pärast seda ükshaaval.
+              </p>
+              <div class="form-grid diagnostic-contact">
+                <div class="field">
+                  <label for="company">Ettevõte *</label>
+                  <input id="company" name="company" required autocomplete="organization" />
+                </div>
+                <div class="field">
+                  <label for="person">Teie nimi *</label>
+                  <input id="person" name="person" required autocomplete="name" />
+                </div>
+                <div class="field">
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" required autocomplete="email" />
+                </div>
+                <div class="field">
+                  <label for="phone">Telefon</label>
+                  <input id="phone" name="phone" autocomplete="tel" />
+                </div>
               </div>
-              <div class="field">
-                <label for="person">Teie nimi *</label>
-                <input id="person" name="person" required autocomplete="name" />
-              </div>
-              <div class="field">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" required autocomplete="email" />
-              </div>
-              <div class="field">
-                <label for="phone">Telefon</label>
-                <input id="phone" name="phone" autocomplete="tel" />
-              </div>
-            </div>
 
-            <div class="quiz-progress" aria-live="polite">
-              <span data-progress-label>1 / {diagnosticQuestions.length}</span>
-              <div><span data-progress-bar></span></div>
-            </div>
-
-            <div class="question-list">
-              {
-                diagnosticQuestions.map((question, index) => (
-                  <fieldset class="question-card" data-question-card data-question-index={index}>
-                    <legend>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {question.text}
-                    </legend>
-                    <div class="answer-row">
-                      {
-                        diagnosticOptions.map((option) => (
-                          <label class="answer-option">
-                            <input type="radio" name={question.id} value={option.value} required />
-                            <span>{option.label}</span>
-                          </label>
-                        ))
-                      }
-                    </div>
-                  </fieldset>
-                ))
-              }
-            </div>
-
-            <p class="form-note quiz-message" data-quiz-message>Vastake küsimusele ja liikuge edasi.</p>
-            <div class="quiz-actions">
-              <button class="btn btn-light" type="button" data-prev-question>Tagasi</button>
-              <button class="btn btn-primary" type="button" data-next-question>Järgmine</button>
-            </div>
-
-            <div class="quiz-submit" data-submit-panel hidden>
-              <label class="checkbox">
-                <input type="checkbox" required />
-                <span>Nõustun, et 02Signal kasutab vastuseid minuga ühenduse võtmiseks ja kokkuvõtte koostamiseks.</span>
+              <label class="checkbox start-consent">
+                <input type="checkbox" name="privacyConsent" required />
+                <span>Nõustun, et 02Signal kasutab minu andmeid ja vastuseid ühenduse võtmiseks ning kokkuvõtte koostamiseks.</span>
               </label>
-              <button class="btn btn-primary" type="submit">Näita tulemust</button>
+
+              <button class="btn btn-primary" type="button" data-start-diagnostic>Alusta</button>
+              <p class="form-note" data-start-note>Teie kontakt salvestatakse enne küsimuste algust, kui andmebaasi ühendus on seadistatud.</p>
+            </div>
+
+            <div class="diagnostic-quiz" data-quiz-panel hidden>
+              <div class="quiz-progress" aria-live="polite">
+                <span data-progress-label>1 / {diagnosticQuestions.length}</span>
+                <div><span data-progress-bar></span></div>
+              </div>
+
+              <div class="question-list">
+                {
+                  diagnosticQuestions.map((question, index) => (
+                    <fieldset class="question-card" data-question-card data-question-index={index}>
+                      <legend>
+                        <span>{String(index + 1).padStart(2, "0")}</span>
+                        {question.text}
+                      </legend>
+                      <div class="answer-row">
+                        {
+                          diagnosticOptions.map((option) => (
+                            <label class="answer-option">
+                              <input type="radio" name={question.id} value={option.value} required />
+                              <span>{option.label}</span>
+                            </label>
+                          ))
+                        }
+                      </div>
+                    </fieldset>
+                  ))
+                }
+              </div>
+
+              <p class="form-note quiz-message" data-quiz-message>Vastake küsimusele ja liikuge edasi.</p>
+              <div class="quiz-actions">
+                <button class="btn btn-light" type="button" data-prev-question>Tagasi</button>
+                <button class="btn btn-primary" type="button" data-next-question>Järgmine</button>
+              </div>
+
+              <div class="quiz-submit" data-submit-panel hidden>
+                <button class="btn btn-primary" type="submit">Näita tulemust</button>
+              </div>
             </div>
           </form>
         </div>
@@ -251,6 +264,10 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
       if (!app || !form || !resultPanel || !dataNode) return;
 
       const data = JSON.parse(dataNode.textContent || "{}");
+      const contactStep = form.querySelector("[data-contact-step]");
+      const quizPanel = form.querySelector("[data-quiz-panel]");
+      const startButton = form.querySelector("[data-start-diagnostic]");
+      const startNote = form.querySelector("[data-start-note]");
       const questionCards = Array.from(form.querySelectorAll("[data-question-card]"));
       const progressLabel = form.querySelector("[data-progress-label]");
       const progressBar = form.querySelector("[data-progress-bar]");
@@ -263,6 +280,7 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
       const reportText = resultPanel.querySelector("[data-report-text]");
       let latestPayload = null;
       let currentQuestion = 0;
+      let leadId = sessionStorage.getItem("diagnosticLeadId") || "";
 
       const getLevel = (score) => {
         return [...data.levels].reverse().find((level) => score >= level.min) || data.levels[0];
@@ -293,6 +311,45 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
           "",
           "Soovin arutada järgmist sammu 02Signaliga."
         ].join("\n");
+      };
+
+      const ensureLeadId = () => {
+        if (leadId) return leadId;
+        leadId = crypto.randomUUID ? crypto.randomUUID() : `lead-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        sessionStorage.setItem("diagnosticLeadId", leadId);
+        return leadId;
+      };
+
+      const buildContactPayload = (eventType) => {
+        const formData = new FormData(form);
+        if (formData.get("website")) return null;
+        return {
+          eventType,
+          leadId: ensureLeadId(),
+          submittedAt: new Date().toISOString(),
+          language: "et",
+          pagePath: "/et/kiirkontroll/",
+          company: String(formData.get("company") || ""),
+          person: String(formData.get("person") || ""),
+          email: String(formData.get("email") || ""),
+          phone: String(formData.get("phone") || ""),
+          privacyConsent: formData.get("privacyConsent") === "on"
+        };
+      };
+
+      const postDiagnosticEvent = async (payload) => {
+        const webhookUrl = app.dataset.webhookUrl?.trim();
+        if (!webhookUrl) return { skipped: true };
+        try {
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          return { ok: response.ok, status: response.status };
+        } catch {
+          return { ok: false };
+        }
       };
 
       const showMailFallback = (payload, note = "E-mail peaks avanema. Kui ei avanenud, kasutage allolevat varuvarianti.") => {
@@ -398,11 +455,16 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         const totalScore = Math.round(dimensionScores.reduce((sum, item) => sum + item.score, 0) / dimensionScores.length);
         const level = getLevel(totalScore);
         return {
+          eventType: "completed",
+          leadId: ensureLeadId(),
           submittedAt: new Date().toISOString(),
+          language: "et",
+          pagePath: "/et/kiirkontroll/",
           company: String(formData.get("company") || ""),
           person: String(formData.get("person") || ""),
           email: String(formData.get("email") || ""),
           phone: String(formData.get("phone") || ""),
+          privacyConsent: formData.get("privacyConsent") === "on",
           totalScore,
           level,
           dimensionScores,
@@ -425,6 +487,46 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         resultPanel.querySelector("[data-radar-chart]").innerHTML = renderRadar(latestPayload.dimensionScores);
         resultPanel.querySelector("[data-gap-map]").innerHTML = renderGapMap(latestPayload.dimensionScores);
         resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        postDiagnosticEvent(latestPayload).then((result) => {
+          if (result.ok) {
+            resultPanel.querySelector("[data-result-note]").textContent = "Tulemus on meile saadetud. Võtame ühendust ühe tööpäeva jooksul.";
+          } else if (!result.skipped) {
+            showMailFallback(latestPayload, "Automaatne saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
+          }
+        });
+      });
+
+      startButton.addEventListener("click", async () => {
+        const contactFields = [
+          form.elements.company,
+          form.elements.person,
+          form.elements.email,
+          form.elements.privacyConsent
+        ];
+        const firstInvalid = contactFields.find((field) => !field.checkValidity());
+        if (firstInvalid) {
+          firstInvalid.reportValidity();
+          startNote.textContent = "Palun täitke kontaktandmed ja nõusolek, siis saate alustada.";
+          return;
+        }
+
+        const payload = buildContactPayload("started");
+        if (!payload) return;
+        startButton.disabled = true;
+        startNote.textContent = "Alustame. Kontakt salvestatakse taustal.";
+        const result = await postDiagnosticEvent(payload);
+        if (result.ok) {
+          startNote.textContent = "Kontakt salvestatud.";
+        } else if (result.skipped) {
+          startNote.textContent = "Küsimustik algas. Andmebaasi ühendus lisatakse eraldi seadistusega.";
+        } else {
+          startNote.textContent = "Küsimustik algas. Kui automaatne salvestus ei õnnestu, saate lõpus tulemuse e-mailiga saata.";
+        }
+
+        contactStep.hidden = true;
+        quizPanel.hidden = false;
+        updateQuestionView();
       });
 
       nextButton.addEventListener("click", () => {
@@ -455,21 +557,12 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
 
       resultPanel.querySelector("[data-send-result]").addEventListener("click", async () => {
         if (!latestPayload) return;
-        const webhookUrl = app.dataset.webhookUrl?.trim();
-        if (webhookUrl) {
-          try {
-            const response = await fetch(webhookUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(latestPayload)
-            });
-            resultPanel.querySelector("[data-result-note]").textContent = response.ok
-              ? "Tulemus saadetud. Võtame ühendust ühe tööpäeva jooksul."
-              : "Saatmine ei õnnestunud. Palun kasutage e-maili.";
-            if (!response.ok) showMailFallback(latestPayload, "Saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
-          } catch {
-            showMailFallback(latestPayload, "Saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
-          }
+        const result = await postDiagnosticEvent({ ...latestPayload, eventType: "completed_resend" });
+        if (!result.skipped) {
+          resultPanel.querySelector("[data-result-note]").textContent = result.ok
+            ? "Tulemus saadetud. Võtame ühendust ühe tööpäeva jooksul."
+            : "Saatmine ei õnnestunud. Palun kasutage e-maili.";
+          if (!result.ok) showMailFallback(latestPayload, "Saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
           return;
         }
         const href = showMailFallback(latestPayload);
