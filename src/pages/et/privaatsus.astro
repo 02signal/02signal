@@ -1,0 +1,54 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { LandingCopy } from "@data/site";
+
+const nav: LandingCopy["nav"] = [
+  ["/et/", "Avaleht"],
+  ["/et/kiirkontroll/", "Kiirkontroll"],
+  ["/et/elluviimine/", "Ehitus"],
+  ["#contact", "Kontakt"]
+];
+---
+
+<BaseLayout
+  lang="et"
+  title="02Signal | Privaatsus"
+  description="Kuidas 02Signal kasutab kiirkontrolli ja kontaktivormi andmeid."
+  path="/et/privaatsus/"
+>
+  <Header lang="et" nav={nav} />
+  <main>
+    <section class="white-band legal-page">
+      <div class="section-inner">
+        <span class="section-kicker">Privaatsus</span>
+        <h1>Kasutame teie andmeid ainult ühenduse võtmiseks ja kokkulepitud töö ettevalmistamiseks.</h1>
+
+        <div class="legal-copy">
+          <h2>Milliseid andmeid küsime?</h2>
+          <p>Kiirkontrollis küsime ettevõtte nime, teie nime, e-maili, soovi korral telefoni ning vastuseid AI valmisoleku küsimustele.</p>
+
+          <h2>Milleks kasutame?</h2>
+          <p>Kasutame andmeid selleks, et näidata teile tulemust, võtta teiega ühendust ja valmistada ette mõistlik järgmine samm. Näiteks 30-90 minutiline arutelu, AI alguse nõu või stardiplaan.</p>
+
+          <h2>Kus andmeid hoiame?</h2>
+          <p>Vormi vastused salvestatakse 02Signal kontrollitud andmebaasi. Teavitus võib tulla meile e-mailiga Resend teenuse kaudu. Secret’e ja API võtmeid ei hoita brauseris.</p>
+
+          <h2>Kellega jagame?</h2>
+          <p>Me ei müü ega jaga teie kontakte kolmandatele osapooltele. Kasutame tehnilisi teenusepakkujaid ainult vormi vastuvõtmiseks, andmete hoidmiseks ja teavituse saatmiseks.</p>
+
+          <h2>Kui kaua hoiame?</h2>
+          <p>Hoiame kiirkontrolli andmeid kuni 12 kuud, kui koostööni ei jõuta. Kui algab tasuline töö, säilitatakse vajalikud andmed lepingu ja raamatupidamise reeglite järgi.</p>
+
+          <h2>Kuidas saab andmeid kustutada?</h2>
+          <p>Kirjutage aadressile <a href="mailto:info@02signal.ai">info@02signal.ai</a>. Saame teie kontaktiga seotud kiirkontrolli andmed kustutada või parandada.</p>
+
+          <h2>Vastutav ettevõte</h2>
+          <p>Ettevõtluskeskus OÜ kasutab 02Signal brändi AI ja automatiseerimise teenuste pakkumiseks.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

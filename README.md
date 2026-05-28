@@ -44,10 +44,16 @@ The page first collects contact details and consent. When the visitor clicks `Al
 
 By default it still works without a backend: after the visitor completes the form, the page calculates the report in the browser and opens an email fallback to `info@02signal.ai` with the score summary.
 
-For collection, add a public webhook URL in Vercel:
+The current recommended production intake is Supabase Edge Function + Supabase tables + Resend notification. See the runbook:
+
+```text
+docs/diagnostic-intake-runbook.md
+```
+
+After deploying the Edge Function, add its public URL in Vercel:
 
 ```bash
-PUBLIC_DIAGNOSTIC_WEBHOOK_URL=https://n8n.example.com/webhook/...
+PUBLIC_DIAGNOSTIC_WEBHOOK_URL=https://<SUPABASE_PROJECT_REF>.functions.supabase.co/diagnostic-intake
 ```
 
 Payload event types:
@@ -56,19 +62,13 @@ Payload event types:
 - `completed`: contact details, consent, same `leadId`, total score, level, dimension scores, raw answers.
 - `completed_resend`: same as `completed`, sent when the visitor clicks the send button again.
 
-Fast MVP workflow:
+Production workflow:
 
-1. Webhook Trigger receives JSON from the page.
-2. Store `started` and `completed` rows in Supabase or Google Sheets.
-3. Send a notification email to `info@02signal.ai`.
-4. Optional: email a short thank-you message to the respondent.
-
-Recommended production workflow:
-
-1. Public webhook or Supabase Edge Function receives the form payload.
+1. Supabase Edge Function receives the form payload.
 2. Server-side code validates required fields, honeypot, consent, and optional Turnstile token.
 3. Supabase stores the lead and diagnostic result using server-side credentials.
 4. Resend sends the internal notification and optional customer confirmation.
 5. If email sending fails, the database row still remains the source of truth.
+6. n8n-ops can later process Supabase rows for daily digest or follow-up tasks.
 
-Do not put private API keys in the frontend. The webhook URL is public by design; keep validation and any secret credentials inside n8n, a Vercel server function, or a Supabase Edge Function.
+Do not put private API keys in the frontend. The webhook URL is public by design; keep validation and any secret credentials inside Supabase Edge Function or another server-side service. Do not send real 02Signal lead data to the training n8n instance at `n8n.02signal.com`.

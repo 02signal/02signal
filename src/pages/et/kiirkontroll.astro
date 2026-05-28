@@ -113,7 +113,10 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
 
               <label class="checkbox start-consent">
                 <input type="checkbox" name="privacyConsent" required />
-                <span>Nõustun, et 02Signal kasutab minu andmeid ja vastuseid ühenduse võtmiseks ning kokkuvõtte koostamiseks.</span>
+                <span>
+                  Nõustun, et 02Signal kasutab minu andmeid ja vastuseid ühenduse võtmiseks ning kokkuvõtte koostamiseks.
+                  <a href="/et/privaatsus/">Privaatsus</a>
+                </span>
               </label>
 
               <button class="btn btn-primary" type="button" data-start-diagnostic>Alusta</button>

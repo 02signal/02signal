@@ -1,0 +1,4 @@
+project_id = "02signal"
+
+[functions.diagnostic-intake]
+verify_jwt = false
