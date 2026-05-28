@@ -175,11 +175,14 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
           <p data-result-text></p>
           <div class="radar-wrap" data-radar-chart></div>
           <div class="gap-map" data-gap-map></div>
+          <p class="form-note">
+            Soovi korral kopeerige kokkuvõte ja salvestage see enda faili või saatke kolleegile.
+          </p>
           <div class="result-actions">
             <button class="btn btn-primary" type="button" data-send-result>Saada tulemus 02Signalile</button>
             <button class="btn btn-light" type="button" data-copy-result>Kopeeri kokkuvõte</button>
           </div>
-          <p class="form-note" data-result-note>Kui andmebaasi ühendus pole veel seadistatud, avaneb e-mail valmis tekstiga.</p>
+          <p class="form-note" data-result-note>Tulemus saadetakse 02Signalile automaatselt.</p>
           <div class="mail-fallback" data-mail-fallback hidden>
             <a class="btn btn-light" data-mail-link href="#">Ava e-kiri uuesti</a>
             <p>Kui e-mail ei avanenud, kopeerige allolev tekst ja saatke see aadressile info@02signal.ai.</p>
@@ -381,8 +384,8 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         progressLabel.textContent = `${currentQuestion + 1} / ${questionCards.length}`;
         progressBar.style.width = `${progress}%`;
         previousButton.disabled = currentQuestion === 0;
-        nextButton.hidden = currentQuestion === questionCards.length - 1;
-        submitPanel.hidden = currentQuestion !== questionCards.length - 1;
+        nextButton.textContent = currentQuestion === questionCards.length - 1 ? "Näita tulemust" : "Järgmine";
+        submitPanel.hidden = true;
         quizMessage.textContent = currentQuestion === questionCards.length - 1
           ? "Viimane küsimus. Pärast vastamist saate tulemust näha."
           : "Vastake küsimusele ja liikuge edasi.";
@@ -537,6 +540,10 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
           quizMessage.textContent = "Palun valige üks vastus, siis saate edasi liikuda.";
           return;
         }
+        if (currentQuestion === questionCards.length - 1) {
+          form.requestSubmit();
+          return;
+        }
         currentQuestion = Math.min(currentQuestion + 1, questionCards.length - 1);
         updateQuestionView();
       });
@@ -555,7 +562,7 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
       resultPanel.querySelector("[data-copy-result]").addEventListener("click", async () => {
         if (!latestPayload) return;
         await navigator.clipboard.writeText(makeReportText(latestPayload));
-        resultPanel.querySelector("[data-result-note]").textContent = "Kokkuvõte kopeeritud.";
+        resultPanel.querySelector("[data-result-note]").textContent = "Kokkuvõte kopeeritud. Saate selle nüüd kleepida enda faili või e-kirja.";
       });
 
       resultPanel.querySelector("[data-send-result]").addEventListener("click", async () => {

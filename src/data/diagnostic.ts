@@ -16,31 +16,31 @@ export const diagnosticDimensions: DiagnosticDimension[] = [
     id: "repetition",
     title: "Korduv töö",
     plainTitle: "Kas sama töö kordub piisavalt tihti?",
-    description: "AI annab kõige kiiremini kasu töös, mida tehakse iga nädal mitu korda."
+    description: "Kõige parem algus on töö, mida tehakse tihti ja enam-vähem samamoodi."
   },
   {
     id: "knowledge",
     title: "Teadmised",
     plainTitle: "Kas hea vastuse reeglid on olemas?",
-    description: "AI vajab näiteid, juhiseid ja varasemaid häid vastuseid, mitte ainult üldist juttu."
+    description: "AI vajab teie häid näiteid ja selgeid reegleid. Kui kõik on inimeste peas, tuleb osa enne kirja panna."
   },
   {
     id: "data",
     title: "Info korrasolek",
     plainTitle: "Kas vajalik info on leitav?",
-    description: "Kui info on ainult inimeste peas või mitmes segases failis, tuleb enne korda luua."
+    description: "Kui vajalik info on laiali või ainult inimeste peas, tuleb see enne lihtsasse korda panna."
   },
   {
     id: "control",
     title: "Kontroll",
     plainTitle: "Kas tulemust saab kontrollida?",
-    description: "Alguses peab inimene nägema, kas AI vastus või soovitus oli õige."
+    description: "Alguses peab inimene AI töö üle vaatama ja märkama, kas vastus oli õige."
   },
   {
     id: "readiness",
     title: "Valmisolek",
     plainTitle: "Kas keegi veab selle väikese sammu lõpuni?",
-    description: "Väike AI samm vajab ühte vastutajat ja natuke aega katsetamiseks."
+    description: "Väike samm vajab ühte eestvedajat ja valmisolekut otsustada, kas jätkata või lõpetada."
   }
 ];
 
@@ -123,7 +123,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ctrl_4",
     dimension: "control",
-    text: "Kas saate mõõta lihtsat kasu: aeg, vigade arv, vastamise kiirus või kliendi rahulolu?"
+    text: "Kas näete hiljem lihtsalt, kas sellest oli kasu: säästetud aeg, vähem vigu või kiirem vastus?"
   },
   {
     id: "ready_1",
@@ -133,7 +133,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ready_2",
     dimension: "readiness",
-    text: "Kas üks inimene saab olla katsetuse vastutaja?"
+    text: "Kas saate määrata ühe inimese, kes vastutab, et väike proov saaks tehtud?"
   },
   {
     id: "ready_3",
@@ -143,7 +143,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ready_4",
     dimension: "readiness",
-    text: "Kas saate teha väikese otsuse 1-2 nädala jooksul, mitte venitada kuude kaupa?"
+    text: "Kui esimene samm on selge, kas saate 1-2 nädala jooksul otsustada: proovime või jätame praegu pooleli?"
   }
 ];
 
@@ -158,22 +158,22 @@ export const diagnosticOptions = [
 export const diagnosticLevels = [
   {
     min: 0,
-    title: "Alustage vestlusest, mitte ehitusest",
-    text: "Tõenäoliselt on enne vaja selgemaks teha, milline töö kordub ja kus info asub."
+    title: "Enne ehitamist tuleb töö selgemaks teha",
+    text: "Praegu ei tasu veel tööriista ehitada. Esmalt tuleb valida üks korduv töö ja panna kirja, kus vajalik info asub."
   },
   {
     min: 35,
-    title: "Sobib tasuta kiirkontroll ja 30-min kõne",
-    text: "Mõni alguskoht on olemas, aga enne ehitamist tasub riskid ja andmed rahulikult üle vaadata."
+    title: "Sobib lühike nõu, mitte kohe ehitus",
+    text: "Mõni võimalik alguskoht on olemas, aga enne raha kulutamist tuleb üle vaadata info, vastutus ja kontroll."
   },
   {
     min: 60,
-    title: "Sobib tööde ülevaatus",
-    text: "Teil on piisavalt korduvaid töid. Järgmine mõistlik samm on valida neist üks esimene praktiline katsetus."
+    title: "Tasub valida üks esimene töö",
+    text: "Teil on piisavalt korduvaid töid. Mõistlik järgmine samm on valida üks töö, kus väike AI abiline võib kõige kiiremini kasu anda."
   },
   {
     min: 80,
-    title: "Valmis väikseks esimeseks tööriistaks",
-    text: "Tõenäoliselt saab valida ühe lihtsa töö ja teha väikese abivahendi, mida inimene alguses kontrollib."
+    title: "Valmis esimese väikese AI abilise jaoks",
+    text: "Saab valida ühe lihtsa töö ja teha väikese abilise, mida inimene alguses üle vaatab. Nii on risk väike ja kasu mõõdetav."
   }
 ];
