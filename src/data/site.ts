@@ -99,165 +99,165 @@ export type LandingCopy = {
 export const copy: Record<Lang, LandingCopy> = {
   et: {
     meta: {
-      title: "02Signal | AI-piloodi protsessiaudit",
+      title: "02Signal | Kust alustada AI-ga?",
       description:
-        "02Signal aitab valida esimese AI-piloodi protsessi, disainida mõõdetava automatiseerimise ja valmistada otsuse ette juhtkonnale.",
+        "02Signal aitab ettevõtte omanikul valida esimese töö, mida AI abil lihtsamaks ja kiiremaks teha.",
       path: "/et/"
     },
     nav: [
       ["#what", "Mida teeme"],
-      ["#formats", "Formaadi"],
-      ["#audit", "Audit"],
+      ["#formats", "Võimalused"],
+      ["#audit", "Kuidas käib"],
       ["#example", "Näide"],
-      ["#contact", "Kontakt"]
+      ["#contact", "Võta ühendust"]
     ],
     hero: {
-      eyebrow: "AI-piloodi protsessiaudit",
-      title: "Vali esimene AI-piloot protsessist, kus võit on mõõdetav.",
+      eyebrow: "Esimene mõistlik AI samm",
+      title: "Aitame valida töö, mille AI saab päriselt lihtsamaks teha.",
       lead:
-        "02Signal aitab juhtidel leida protsessi, millel on tagasisideahel, äriline mõju ja valmis meeskond. Alles siis ehitame n8n, RAG-i või bot'i.",
+        "AI-ga ei pea alustama suure ja kalli projektiga. Vaatame teie korduvad tööd läbi ja ütleme selgelt, kust on kõige mõistlikum alustada.",
       primary: "Broneeri 30-min kõne",
-      secondary: "Vaata formaate",
+      secondary: "Vaata võimalusi",
       proof: [
-        ["10 min", "tasuta enesediagnostika"],
-        ["1-2 nädalat", "protsessiaudit juhtkonnale"],
-        ["15-20 protsessi", "kaardistatud ja prioriseeritud"]
+        ["10 min", "tasuta kiirkontroll"],
+        ["1-2 nädalat", "põhjalik tööde ülevaatus"],
+        ["1 selge valik", "mida teha esimesena"]
       ]
     },
     what: {
       kicker: "Mida 02Signal teeb",
-      title: "Me ei müü “AI projekti”. Me aitame valida õige esimese protsessi.",
+      title: "Me aitame aru saada, kus AI annab päriselt kasu.",
       lead:
-        "Vale stardiprotsess on varase AI-muutuse kõige kallim viga: piloot venib, ROI ei teki ja usaldus kaob. Õige protsess loob väikese mõõdetava hooratta.",
+        "Kõige suurem viga on alustada kohast, kus tulemust ei ole näha. Siis kulub raha, inimesed väsivad ja usk AI-sse kaob. Me aitame valida väikese, praktilise ja mõõdetava alguse.",
       cards: [
         {
           number: "1",
-          title: "Leiame sobiva protsessi",
-          text: "Kaardistame korduvad otsused, andmeallikad, tagasisideahela ja vea hinna."
+          title: "Leiame ajaröövlid",
+          text: "Vaatame, millised korduvad tööd võtavad inimestelt iga nädal kõige rohkem aega."
         },
         {
           number: "2",
-          title: "Disainime piloodi",
-          text: "Määrame teadmuse, autonoomia taseme, otsuselogi, kvaliteedikontrolli ja mõõdikud."
+          title: "Valime ohutu alguse",
+          text: "Eelistame tööd, kus viga ei ole liiga kallis ja tulemust saab lihtsalt kontrollida."
         },
         {
           number: "3",
-          title: "Ehitus alles pärast valikut",
-          text: "n8n, Telegram, Google Sheets või RAG tulevad mängu siis, kui protsessi loogika on selge."
+          title: "Alles siis ehitame",
+          text: "Tööriistad tulevad hiljem. Kõigepealt peab olema selge, mida täpselt lihtsamaks teeme."
         }
       ]
     },
     formats: {
-      kicker: "Kaks abiformaati",
-      title: "Alusta kergelt või telli otsustamiseks audit.",
+      kicker: "Kaks lihtsat võimalust",
+      title: "Alusta väikese kontrolliga või tee põhjalik ülevaatus.",
       lead:
-        "Võid alustada 10-minutilise enesediagnostikaga. Kui ettevõttes on mitu AI-ideed ja vaja on juhtkonna otsust, sobib protsessiaudit.",
+        "Kui tahate lihtsalt teada, kas olete AI jaoks valmis, alustage kiirkontrollist. Kui laual on mitu ideed ja vaja on otsustada, mida päriselt teha, sobib põhjalik ülevaatus.",
       cards: [
         {
-          label: "Kerge sisenemine",
-          title: "AI küpsuse enesediagnostika",
-          text: "Sobib, kui soovite kiiresti aru saada, kas ettevõte on AI-piloodiks valmis.",
-          items: ["20 küsimust viies mõõtmes", "PDF-kokkuvõte e-mailile", "3-5 järgmist sammu", "Puudujääkide kaart"],
+          label: "Kiire algus",
+          title: "Tasuta AI kiirkontroll",
+          text: "Sobib, kui soovite rahulikult aru saada, kas AI-ga on üldse mõtet praegu alustada.",
+          items: ["20 lihtsat küsimust", "kokkuvõte e-mailile", "3-5 soovitatud järgmist sammu", "selge pilt, mis on juba olemas ja mis puudu"],
           price: "10 min · tasuta",
-          cta: "Alusta enesediagnostikat"
+          cta: "Tee kiirkontroll"
         },
         {
-          label: "Juhtkonna otsus",
-          title: "Protsessiaudit",
-          text: "Sobib, kui ettevõttes on 3-7 AI-kandidaatprotsessi ja vaja on valida esimene või kaks pilooti.",
+          label: "Kui on vaja otsustada",
+          title: "Tööde ülevaatus",
+          text: "Sobib, kui ettevõttes on mitu kohta, kus AI võiks aidata, aga ei ole selge, kust alustada.",
           items: [
-            "15-20 protsessi kaart",
-            "1-2 finalisti AI-hooratta spetsifikatsioon",
-            "6-12 kuu teekaart",
-            "60-min kaitsmine top-tiimile"
+            "15-20 korduva töö kaart",
+            "soovitus, mida teha esimesena",
+            "mida mitte praegu puutuda",
+            "selge arutelu omaniku ja võtmeinimestega"
           ],
-          price: "1-2 nädalat · hind pärast skoopimist",
-          cta: "Telli audit"
+          price: "1-2 nädalat · hind pärast lühikest kõnet",
+          cta: "Räägime üle"
         }
       ]
     },
     fit: {
-      kicker: "Millal audit sobib",
-      title: "Audit lahendab ühe konkreetse küsimuse: millisest protsessist alustada?",
+      kicker: "Millal see sobib",
+      title: "Põhiküsimus on lihtne: millist tööd tasub AI-ga esimesena lihtsamaks teha?",
       items: [
-        ["Ettevõttes on 3-7 AI-ideed või protsessi, aga prioriteet puudub.", "Audit"],
-        ["Juhtkond vajab eelarveks selget põhjendust ja Go/No-Go kriteeriume.", "Audit"],
-        ["Kolmel juhil on kolm erinevat AI-ideed ja ühine otsustusraam puudub.", "Audit"],
-        ["Protsess on juba valitud ja tiim tahab kohe prototüübi ehitada.", "Workshop"],
-        ["Protsess on valitud, aga sisemist ehitustiimi ei ole.", "Juurutus"],
-        ["Ettevõttes on alla 50-100 inimese ja protsessid on veel väga omaniku peas.", "Enesediagnostika või kõne"]
+        ["Teil on mitu AI-ideed, aga ei tea, milline neist annab kõige kiiremini kasu.", "Sobib"],
+        ["Inimesed teevad iga nädal palju käsitööd Excelis, e-mailis või chat'is.", "Sobib"],
+        ["Tahate enne raha kulutamist aru saada, kas andmed ja töökorraldus on valmis.", "Sobib"],
+        ["Te juba teate täpselt, mida ehitada, ja vajate ainult tehnilist tegijat.", "Pigem ehitusabi"],
+        ["Soovite töötajatele AI kasutamise koolitust, mitte tööde muutmist.", "Pigem koolitus"],
+        ["Ettevõte on väga väike ja kõik otsused on ainult omaniku peas.", "Alustame kõnest"]
       ]
     },
     filter: {
-      badge: "Peamine filter",
-      title: "Ilma tagasisideahelata AI-hooratas ei käivitu.",
+      badge: "Kõige tähtsam küsimus",
+      title: "Kas me saame hiljem aru, kas AI aitas või mitte?",
       copy:
-        "Esimene piloot peab olema protsess, kus on võimalik kontrollida, kas AI otsus oli õige. Kui sellist protsessi ei leidu, on auditi tulemus sama väärtuslik: säästate eelarve piloodilt, mis ei saa õppida."
+        "Hea esimene AI töö on selline, kus tulemust saab kontrollida: kas vastus oli õige, kas töö sai kiiremini tehtud, kas klient sai parema vastuse, kas vigu jäi vähemaks. Kui seda ei saa mõõta, ei tasu sealt alustada."
     },
     audit: {
-      kicker: "Kuidas audit käib",
-      title: "1-2 nädalat päris protsesside, intervjuude ja andmete põhjal.",
+      kicker: "Kuidas ülevaatus käib",
+      title: "1-2 nädalaga teeme selgeks, kust on mõistlik alustada.",
       lead:
-        "Töö ei ole ideekorje. Kontrollime protsesse nelja tunnuse järgi: korduvus, tagasisideahel, vea hind ja meeskonna valmisolek.",
+        "Me ei tee pikka strateegiadokumenti. Räägime võtmeinimestega, vaatame korduvaid töid ja paneme lihtsas keeles kirja, mida teha, mida oodata ja mida praegu vältida.",
       steps: [
         {
-          tag: "Nädal 1",
-          title: "Protsessikaart ja märgistus",
+          tag: "Samm 1",
+          title: "Paneme korduvad tööd kirja",
           text:
-            "Koondame 15-20 protsessi. Iga protsess saab staatuse: AI-hooratas, AI-kiirendus ilma ümberdisainita või mitte puutuda."
+            "Kogume kokku 15-20 tööd, mis võtavad aega: kliendivastused, aruanded, pakkumised, tellimused, graafikud, andmete kopeerimine."
         },
         {
-          tag: "Nädal 2",
-          title: "Hooratta disain finalistidele",
+          tag: "Samm 2",
+          title: "Valime parimad alguskohad",
           text:
-            "Kirjeldame teadmuse, autonoomia taseme, otsuselogi, kvaliteedikontrolli ja mõõdikud 1-2 võtmeprotsessi jaoks."
+            "Vaatame iga töö puhul, kui tihti see kordub, kui palju aega kulub, kui suur on vea hind ja kas tulemust saab kontrollida."
         },
         {
-          tag: "Finaal",
-          title: "60-min otsustamise sessioon",
+          tag: "Samm 3",
+          title: "Anname selge soovituse",
           text:
-            "Läbime tulemused CEO/COO ja protsessiomanikega ning lepime kokku piloodi, eelarveraami ja Go/No-Go punktid."
+            "Lõpus on üks arutelu omaniku ja võtmeinimestega: mida teha esimesena, mida teha hiljem ja millest praegu eemale hoida."
         }
       ]
     },
     example: {
       kicker: "Näidislahendus",
-      title: "UrbanStyle: protsessikaart, mis eraldab AI-hooratta lihtsast automatiseerimisest.",
+      title: "Näide: sama ettevõtte sees ei sobi kõik tööd esimeseks AI sammuks.",
       lead:
-        "See on placeholder näide 02Signal simulatsioonist. Päris auditis on siin teie ettevõtte 15-20 protsessi ja iga staatuse lühike põhjendus.",
+        "Allpool on lihtne näide. Päris ülevaatuses oleks siin teie ettevõtte tööd ja iga töö juures lühike põhjendus.",
       statuses: {
-        flywheel: "AI-hooratas",
-        accelerate: "AI-kiirendus",
-        pause: "mitte puutuda"
+        flywheel: "sobib esimeseks",
+        accelerate: "lihtne võit",
+        pause: "praegu mitte"
       },
       processes: [
-        { name: "Kliendipäringute vastused", status: "flywheel" },
-        { name: "Varude ümbertõstmise otsused", status: "flywheel" },
-        { name: "Kampaaniate sisukavandid", status: "accelerate" },
+        { name: "Kliendiküsimustele vastamine", status: "flywheel" },
+        { name: "Kaubapuuduse märkamine", status: "flywheel" },
+        { name: "Kampaania teksti mustandid", status: "accelerate" },
         { name: "Lepingute lõplik kinnitamine", status: "pause" },
-        { name: "Tootekirjelduste loomine", status: "accelerate" },
-        { name: "Tellimuste erandite käsitlus", status: "flywheel" },
-        { name: "Finantsprognoos", status: "pause" },
-        { name: "Poe personali graafikud", status: "accelerate" }
+        { name: "Tootekirjelduste parandamine", status: "accelerate" },
+        { name: "Probleemsete tellimuste sorteerimine", status: "flywheel" },
+        { name: "Aasta finantsprognoos", status: "pause" },
+        { name: "Töögraafikute ettevalmistus", status: "accelerate" }
       ],
       legend: [
-        "AI-hooratas - startida lähimas kvartalis",
-        "AI-kiirendus - kasuta valmis töövoogu",
-        "mitte puutuda - risk, andmed või tagasiside ei sobi"
+        "sobib esimeseks - kasu on näha ja tulemust saab kontrollida",
+        "lihtne võit - saab teha väikese tööriistaga",
+        "praegu mitte - liiga riskantne, ebaselge või andmed pole valmis"
       ]
     },
     scope: {
-      kicker: "Mis auditisse ei mahu",
-      title: "Audit on valiku ja piloodidisaini töö, mitte täisjuurutus.",
-      includedTitle: "Audit annab otsuse aluse",
-      notIncludedTitle: "Juurutuse töö tuleb pärast",
-      included: ["prioriseeritud protsessikaart", "piloodi tööspetsifikatsioon", "mõõdikud ja kvaliteedikontroll", "juhtkonna otsustussessioon"],
-      notIncluded: ["täielik n8n tootmisworkflow", "andmeturbe poliitika kinnitamine", "autotestide pipeline", "champion-võrgustiku koolitus"]
+      kicker: "Mida saate",
+      title: "Tulemuseks on praktiline otsus, mitte paks raport.",
+      includedTitle: "Ülevaatus annab",
+      notIncludedTitle: "Pärast saab eraldi ehitada",
+      included: ["lihtne nimekiri töödest, mida tasub vaadata", "soovitus, mida teha esimesena", "selgitus, miks just see töö", "järgmiste sammude plaan"],
+      notIncluded: ["täielik tehniline lahendus", "uue süsteemi valmis ehitamine", "andmeturbe reeglite kinnitamine", "pikk koolitusprogramm töötajatele"]
     },
     contact: {
       kicker: "Järgmine samm",
-      title: "Räägime läbi 2-3 protsessi ja valime õige formaadi.",
-      lead: "Vastame ühe tööpäeva jooksul. Kui audit ei ole praegu mõistlik, ütleme seda otse ja suuname kergemasse formaati.",
+      title: "Räägime 30 minutiga läbi, kas see on teile mõistlik.",
+      lead: "Kirjeldage paari sõnaga, milline töö praegu aega võtab. Kui põhjalikku ülevaatust ei ole vaja, ütleme seda ausalt.",
       emailCta: "Kirjuta info@02signal.ai"
     },
     form: {
@@ -266,16 +266,16 @@ export const copy: Record<Lang, LandingCopy> = {
       name: "Nimi *",
       role: "Roll *",
       email: "Email *",
-      need: "Mida vajate? *",
-      candidates: "Mitu AI-kandidaatprotsessi näete? *",
-      message: "Kirjeldage 1-2 lausega, kus AI võiks aidata *",
+      need: "Mis teid huvitab? *",
+      candidates: "Mitu korduvat tööd võiks AI-ga lihtsamaks teha? *",
+      message: "Kirjeldage 1-2 lausega, milline töö praegu aega võtab *",
       consent: "Nõustun, et 02Signal kasutab neid andmeid minuga ühenduse võtmiseks.",
       submit: "Saada päring",
-      note: "Vorm avab e-kirja teie meiliprogrammis. Päris n8n webhook'i saab ühendada järgmise sammuna.",
+      note: "Vorm avab e-kirja teie meiliprogrammis. Vastame ühe tööpäeva jooksul.",
       sizes: ["50-100", "100-500", "500+", "Alla 50", "Ei tea"],
-      needs: ["Protsessiaudit", "30-min kõne", "Enesediagnostika", "Tahan arutada midagi muud"],
+      needs: ["30-min kõne", "Tasuta kiirkontroll", "Tööde ülevaatus", "Tahan lihtsalt nõu küsida"],
       candidateOptions: ["1", "2-3", "4-7", "Rohkem", "Ei tea"],
-      mailSubject: "02Signal AI-piloodi päring"
+      mailSubject: "02Signal AI alguse päring"
     }
   },
   en: {
