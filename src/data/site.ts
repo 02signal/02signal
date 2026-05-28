@@ -37,6 +37,7 @@ export type LandingCopy = {
       items: string[];
       price: string;
       cta: string;
+      href?: string;
     }>;
   };
   fit: {
@@ -107,6 +108,7 @@ export const copy: Record<Lang, LandingCopy> = {
     nav: [
       ["#what", "Mida teeme"],
       ["#formats", "Võimalused"],
+      ["/et/kiirkontroll/", "Kiirkontroll"],
       ["#audit", "Kuidas käib"],
       ["#example", "Näide"],
       ["#contact", "Võta ühendust"]
@@ -159,7 +161,8 @@ export const copy: Record<Lang, LandingCopy> = {
           text: "Sobib, kui soovite rahulikult aru saada, kas AI-ga on üldse mõtet praegu alustada.",
           items: ["20 lihtsat küsimust", "kokkuvõte e-mailile", "3-5 soovitatud järgmist sammu", "selge pilt, mis on juba olemas ja mis puudu"],
           price: "10 min · tasuta",
-          cta: "Tee kiirkontroll"
+          cta: "Tee kiirkontroll",
+          href: "/et/kiirkontroll/"
         },
         {
           label: "Kui on vaja otsustada",
@@ -171,7 +174,7 @@ export const copy: Record<Lang, LandingCopy> = {
             "mida mitte praegu puutuda",
             "selge arutelu omaniku ja võtmeinimestega"
           ],
-          price: "1-2 nädalat · hind pärast lühikest kõnet",
+          price: "lihtsaim tasuline samm 490 € + KM",
           cta: "Räägime üle"
         }
       ]

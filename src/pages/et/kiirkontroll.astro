@@ -1,0 +1,387 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { diagnosticDimensions, diagnosticLevels, diagnosticOptions, diagnosticQuestions } from "@data/diagnostic";
+import type { LandingCopy } from "@data/site";
+
+const nav: LandingCopy["nav"] = [
+  ["/et/", "Avaleht"],
+  ["#questions", "Küsimused"],
+  ["#price", "Hind"],
+  ["#contact", "Kontakt"]
+];
+
+const diagnosticPayload = {
+  dimensions: diagnosticDimensions,
+  questions: diagnosticQuestions,
+  levels: diagnosticLevels
+};
+
+const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
+---
+
+<BaseLayout
+  lang="et"
+  title="02Signal | Tasuta AI kiirkontroll"
+  description="10-minutiline lihtne enesehindamine ettevõtte omanikule: kust AI-ga mõistlikult alustada ja mida enne korrastada."
+  path="/et/kiirkontroll/"
+>
+  <Header lang="et" nav={nav} />
+  <main>
+    <section class="diagnostic-hero">
+      <div class="section-inner diagnostic-hero-grid">
+        <div>
+          <span class="eyebrow">Tasuta AI kiirkontroll</span>
+          <h1>Saage 10 minutiga aru, kas AI-ga on mõistlik kohe alustada.</h1>
+          <p>
+            Vastake 20 lihtsale küsimusele. Lõpus näete kohe tulemust, radarit ja lünkade kaarti:
+            mis on korras, mis vajab tähelepanu ja milline võiks olla esimene praktiline samm.
+          </p>
+          <div class="hero-actions">
+            <a href="#questions" class="btn btn-primary">Alusta küsimustikku</a>
+            <a href="#price" class="btn btn-secondary">Vaata hinda</a>
+          </div>
+        </div>
+        <aside class="diagnostic-summary-card">
+          <strong>Mida saate?</strong>
+          <ul class="check-list">
+            <li>AI valmisoleku skoor viies lihtsas valdkonnas</li>
+            <li>radar-graafik ja lünkade kaart</li>
+            <li>selge soovitus: kõne, ülevaatus või väike tööriist</li>
+            <li>raporti tekst, mida saab meile e-mailiga saata</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="white-band">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-kicker">Mida me hindame</span>
+          <h2>Viis asja, mis peavad lihtsa AI abivahendi jaoks paigas olema.</h2>
+          <p>Need ei ole tehnilised küsimused. Need on tavalised omaniku küsimused: kas töö kordub, kas info on olemas ja kas inimene saab tulemust kontrollida.</p>
+        </div>
+        <div class="grid-5">
+          {
+            diagnosticDimensions.map((dimension) => (
+              <article class="mini-card">
+                <h3>{dimension.title}</h3>
+                <p>{dimension.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="questions" class="mint-band">
+      <div class="section-inner diagnostic-layout" data-diagnostic-app data-webhook-url={webhookUrl}>
+        <div>
+          <div class="section-head">
+            <span class="section-kicker">Küsimustik</span>
+            <h2>Vastake ausalt. Täiuslikku seisu ei ole vaja.</h2>
+            <p>Valige iga väite juures sobiv vastus. Kui kõhklete, valige “osaliselt”.</p>
+          </div>
+
+          <form class="diagnostic-form" data-diagnostic-form>
+            <input class="hidden-field" type="text" name="website" tabindex="-1" autocomplete="off" />
+            <div class="form-grid diagnostic-contact">
+              <div class="field">
+                <label for="company">Ettevõte *</label>
+                <input id="company" name="company" required autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="person">Teie nimi *</label>
+                <input id="person" name="person" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="phone">Telefon</label>
+                <input id="phone" name="phone" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="question-list">
+              {
+                diagnosticQuestions.map((question, index) => (
+                  <fieldset class="question-card">
+                    <legend>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      {question.text}
+                    </legend>
+                    <div class="answer-row">
+                      {
+                        diagnosticOptions.map((option) => (
+                          <label class="answer-option">
+                            <input type="radio" name={question.id} value={option.value} required />
+                            <span>{option.label}</span>
+                          </label>
+                        ))
+                      }
+                    </div>
+                  </fieldset>
+                ))
+              }
+            </div>
+
+            <label class="checkbox">
+              <input type="checkbox" required />
+              <span>Nõustun, et 02Signal kasutab vastuseid minuga ühenduse võtmiseks ja kokkuvõtte koostamiseks.</span>
+            </label>
+            <button class="btn btn-primary" type="submit">Näita tulemust</button>
+          </form>
+        </div>
+
+        <aside class="result-panel" data-result-panel hidden>
+          <span class="section-kicker">Teie tulemus</span>
+          <div class="score-circle">
+            <strong data-total-score>0</strong>
+            <span>/ 100</span>
+          </div>
+          <h2 data-result-title></h2>
+          <p data-result-text></p>
+          <div class="radar-wrap" data-radar-chart></div>
+          <div class="gap-map" data-gap-map></div>
+          <div class="result-actions">
+            <button class="btn btn-primary" type="button" data-send-result>Saada tulemus 02Signalile</button>
+            <button class="btn btn-light" type="button" data-copy-result>Kopeeri kokkuvõte</button>
+          </div>
+          <p class="form-note" data-result-note>Kui andmebaasi ühendus pole veel seadistatud, avaneb e-mail valmis tekstiga.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="price" class="white-band">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-kicker">Kohene pakkumine</span>
+          <h2>Lihtne ja turvaline järgmine samm.</h2>
+          <p>Kui tahate kohe hinda teada, siis kõige väiksem tasuline samm on kindla mahuga. Nii on risk väike nii teile kui meile.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <span class="offer-label">Alusta siit</span>
+            <h3>Tasuta kiirkontroll</h3>
+            <p>Teete küsimustiku ise ära ja saadate tulemuse meile.</p>
+            <strong>0 €</strong>
+            <ul class="check-list">
+              <li>20 lihtsat küsimust</li>
+              <li>tulemus kohe ekraanil</li>
+              <li>sobib esimese vestluse ettevalmistuseks</li>
+            </ul>
+          </article>
+          <article class="price-card highlighted">
+            <span class="offer-label">Kõige väiksem tasuline samm</span>
+            <h3>AI alguse nõustamine</h3>
+            <p>90-min kohtumine, kus vaatame teie tulemuse ja 2-3 korduvat tööd läbi.</p>
+            <strong>490 € + KM</strong>
+            <ul class="check-list">
+              <li>üks kohtumine omanikuga</li>
+              <li>soovitus, mida teha esimesena</li>
+              <li>ühe lehe kokkuvõte e-mailile</li>
+              <li>hinnang, kas on mõtet ehitusega jätkata</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <span class="offer-label">Kui töid on mitu</span>
+            <h3>Tööde ülevaatus</h3>
+            <p>Kui ettevõttes on mitu võimalikku AI kohta ja vaja on selget valikut.</p>
+            <strong>alates 1 900 € + KM</strong>
+            <ul class="check-list">
+              <li>15-20 korduva töö kaart</li>
+              <li>üks soovitatud esimene samm</li>
+              <li>mida praegu mitte puutuda</li>
+              <li>järgmiste sammude plaan</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="navy-band">
+      <div class="section-inner contact-grid">
+        <div class="section-head">
+          <span class="section-kicker">Pärast kiirkontrolli</span>
+          <h2>Kui tulemus on käes, saame kohe rääkida konkreetselt.</h2>
+          <p>Me ei pea alustama üldisest AI jutust. Saame vaadata teie korduvaid töid ja otsustada, kas järgmine samm on kõne, nõustamine või väike tööriist.</p>
+        </div>
+        <div class="contact-panel">
+          <h3>Mida vastustega teeme?</h3>
+          <p class="small-copy">
+            Kui saadate tulemuse meile, kasutame seda ainult selleks, et teie olukorrast aru saada ja
+            pakkuda mõistlikku järgmist sammu. Me ei jaga kontakte kolmandatele osapooltele.
+          </p>
+          <a class="btn btn-primary" href="#questions">Täida kiirkontroll</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script is:inline type="application/json" id="diagnostic-data" set:html={JSON.stringify(diagnosticPayload)}></script>
+  <script is:inline>
+    (() => {
+      const app = document.querySelector("[data-diagnostic-app]");
+      const form = document.querySelector("[data-diagnostic-form]");
+      const resultPanel = document.querySelector("[data-result-panel]");
+      const dataNode = document.getElementById("diagnostic-data");
+      if (!app || !form || !resultPanel || !dataNode) return;
+
+      const data = JSON.parse(dataNode.textContent || "{}");
+      let latestPayload = null;
+
+      const getLevel = (score) => {
+        return [...data.levels].reverse().find((level) => score >= level.min) || data.levels[0];
+      };
+
+      const getDimensionLabel = (score) => {
+        if (score >= 70) return "tugev";
+        if (score >= 45) return "vajab täpsustamist";
+        return "vajab enne korda";
+      };
+
+      const makeReportText = (payload) => {
+        const rows = payload.dimensionScores
+          .map((item) => `${item.title}: ${item.score}/100 - ${getDimensionLabel(item.score)}`)
+          .join("\n");
+        return [
+          `Ettevõte: ${payload.company}`,
+          `Nimi: ${payload.person}`,
+          `Email: ${payload.email}`,
+          `Telefon: ${payload.phone || "-"}`,
+          "",
+          `Tulemus: ${payload.totalScore}/100`,
+          `${payload.level.title}`,
+          payload.level.text,
+          "",
+          "Valdkonnad:",
+          rows,
+          "",
+          "Soovin arutada järgmist sammu 02Signaliga."
+        ].join("\n");
+      };
+
+      const renderRadar = (dimensionScores) => {
+        const size = 120;
+        const center = 60;
+        const maxRadius = 38;
+        const count = dimensionScores.length;
+        const pointFor = (score, index, radiusScale = 1) => {
+          const angle = (Math.PI * 2 * index) / count - Math.PI / 2;
+          const radius = maxRadius * radiusScale * (score / 100);
+          return [center + Math.cos(angle) * radius, center + Math.sin(angle) * radius];
+        };
+        const polygon = dimensionScores.map((item, index) => pointFor(item.score, index).join(",")).join(" ");
+        const axes = dimensionScores
+          .map((_, index) => {
+            const [x, y] = pointFor(100, index);
+            return `<line x1="${center}" y1="${center}" x2="${x}" y2="${y}" />`;
+          })
+          .join("");
+        const rings = [25, 50, 75, 100]
+          .map((score) => {
+            const points = dimensionScores.map((_, index) => pointFor(score, index, 1).join(",")).join(" ");
+            return `<polygon points="${points}" />`;
+          })
+          .join("");
+        return `
+          <svg class="radar" viewBox="0 0 ${size} ${size}" role="img" aria-label="AI valmisoleku radar">
+            <g class="radar-grid">${rings}${axes}</g>
+            <polygon class="radar-area" points="${polygon}" />
+            ${dimensionScores
+              .map((item, index) => {
+                const [x, y] = pointFor(item.score, index);
+                return `<circle cx="${x}" cy="${y}" r="2.7"><title>${item.title}: ${item.score}/100</title></circle>`;
+              })
+              .join("")}
+          </svg>
+        `;
+      };
+
+      const renderGapMap = (dimensionScores) => {
+        return dimensionScores
+          .map(
+            (item) => `
+              <div class="gap-row">
+                <div class="gap-row-head">
+                  <strong>${item.title}</strong>
+                  <span>${item.score}/100 · ${getDimensionLabel(item.score)}</span>
+                </div>
+                <div class="gap-bar"><span style="width:${item.score}%"></span></div>
+                <p>${item.description}</p>
+              </div>
+            `
+          )
+          .join("");
+      };
+
+      const buildPayload = () => {
+        const formData = new FormData(form);
+        if (formData.get("website")) return null;
+        const answers = {};
+        data.questions.forEach((question) => {
+          answers[question.id] = Number(formData.get(question.id) ?? 0);
+        });
+        const dimensionScores = data.dimensions.map((dimension) => {
+          const dimensionQuestions = data.questions.filter((question) => question.dimension === dimension.id);
+          const raw = dimensionQuestions.reduce((sum, question) => sum + answers[question.id], 0);
+          const score = Math.round((raw / (dimensionQuestions.length * 4)) * 100);
+          return { ...dimension, score };
+        });
+        const totalScore = Math.round(dimensionScores.reduce((sum, item) => sum + item.score, 0) / dimensionScores.length);
+        const level = getLevel(totalScore);
+        return {
+          submittedAt: new Date().toISOString(),
+          company: String(formData.get("company") || ""),
+          person: String(formData.get("person") || ""),
+          email: String(formData.get("email") || ""),
+          phone: String(formData.get("phone") || ""),
+          totalScore,
+          level,
+          dimensionScores,
+          answers
+        };
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        latestPayload = buildPayload();
+        if (!latestPayload) return;
+        resultPanel.hidden = false;
+        resultPanel.querySelector("[data-total-score]").textContent = String(latestPayload.totalScore);
+        resultPanel.querySelector("[data-result-title]").textContent = latestPayload.level.title;
+        resultPanel.querySelector("[data-result-text]").textContent = latestPayload.level.text;
+        resultPanel.querySelector("[data-radar-chart]").innerHTML = renderRadar(latestPayload.dimensionScores);
+        resultPanel.querySelector("[data-gap-map]").innerHTML = renderGapMap(latestPayload.dimensionScores);
+        resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      resultPanel.querySelector("[data-copy-result]").addEventListener("click", async () => {
+        if (!latestPayload) return;
+        await navigator.clipboard.writeText(makeReportText(latestPayload));
+        resultPanel.querySelector("[data-result-note]").textContent = "Kokkuvõte kopeeritud.";
+      });
+
+      resultPanel.querySelector("[data-send-result]").addEventListener("click", async () => {
+        if (!latestPayload) return;
+        const webhookUrl = app.dataset.webhookUrl?.trim();
+        if (webhookUrl) {
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(latestPayload)
+          });
+          resultPanel.querySelector("[data-result-note]").textContent = response.ok
+            ? "Tulemus saadetud. Võtame ühendust ühe tööpäeva jooksul."
+            : "Saatmine ei õnnestunud. Palun kasutage e-maili.";
+          return;
+        }
+        window.location.href = `mailto:info@02signal.ai?subject=${encodeURIComponent("02Signal AI kiirkontrolli tulemus")}&body=${encodeURIComponent(makeReportText(latestPayload))}`;
+      });
+    })();
+  </script>
+</BaseLayout>
