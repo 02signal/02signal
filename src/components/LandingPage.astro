@@ -74,12 +74,61 @@ const schema = [
     ]
   }
 ];
+const decisionCards =
+  lang === "et"
+    ? [
+        {
+          label: "Ma ei tea, kas AI sobib",
+          title: "Alusta tasuta kiirkontrollist",
+          text: "10 minutit. Saate kohe pildi, kas tasub jätkata ja mis vajab enne korrastamist.",
+          cta: "Tee kiirkontroll",
+          href: "/et/kiirkontroll/"
+        },
+        {
+          label: "Mul on mitu võimalikku kohta",
+          title: "Võta 90-min AI alguse nõu",
+          text: "Vaatame 2-3 ajaröövlit läbi ja ütleme, millest alustada või mida praegu mitte puutuda.",
+          cta: "Räägime üle",
+          href: "#contact"
+        },
+        {
+          label: "Üks korduv töö on juba selge",
+          title: "Vaata AI abivahendi ehitust",
+          text: "Kui inimene saab tulemust kontrollida, saab väikese lahenduse ehitada kindla mahuga.",
+          cta: "Vaata ehitust",
+          href: "/et/elluviimine/"
+        }
+      ]
+    : null;
 ---
 
 <BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath} schema={schema}>
   <Header lang={lang} nav={page.nav} />
   <main id="top">
     <Hero hero={page.hero} />
+
+    {
+      decisionCards && (
+        <section class="choice-band" aria-labelledby="choice-title">
+          <div class="section-inner">
+            <div class="choice-head">
+              <span class="section-kicker">Kiire valik</span>
+              <h2 id="choice-title">Milline olukord on teile kõige lähemal?</h2>
+            </div>
+            <div class="choice-grid">
+              {decisionCards.map((card) => (
+                <a class="choice-item" href={card.href}>
+                  <span>{card.label}</span>
+                  <strong>{card.title}</strong>
+                  <p>{card.text}</p>
+                  <em>{card.cta}</em>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
 
     <section id="what" class="white-band">
       <div class="section-inner">
