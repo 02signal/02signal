@@ -1,0 +1,32 @@
+---
+import { alternateLinks, type Lang, type LandingCopy } from "@data/site";
+
+type Props = {
+  lang: Lang;
+  nav: LandingCopy["nav"];
+};
+
+const { lang, nav } = Astro.props;
+const links = alternateLinks(lang);
+---
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="logo" href={`/${lang}/`} aria-label="02Signal">
+      <span class="logo-mark">0<span>2</span></span>
+      <span>02Signal</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary">
+      {nav.map(([href, label]) => <a href={href}>{label}</a>)}
+    </nav>
+    <div class="lang-switch" aria-label="Language">
+      {
+        links.map((item) => (
+          <a href={item.href} class:list={{ active: item.current }} aria-current={item.current ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>

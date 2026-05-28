@@ -1,0 +1,28 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  cards: LandingCopy["formats"]["cards"];
+};
+
+const { cards } = Astro.props;
+---
+
+<div class="grid-2">
+  {
+    cards.map((card, index) => (
+      <article class="offer">
+        <div class="offer-main">
+          <span class="offer-label">{card.label}</span>
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+          <ul>{card.items.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="offer-footer">
+          <span class="price">{card.price}</span>
+          <a href="#contact" class={`btn ${index === 0 ? "btn-light" : "btn-primary"}`}>{card.cta}</a>
+        </div>
+      </article>
+    ))
+  }
+</div>

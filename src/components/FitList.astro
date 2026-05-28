@@ -1,0 +1,21 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  items: LandingCopy["fit"]["items"];
+};
+
+const { items } = Astro.props;
+---
+
+<div class="fit-grid">
+  {
+    items.map(([text, result], index) => (
+      <div class="fit-item">
+        <div class="fit-num">{String(index + 1).padStart(2, "0")}</div>
+        <div>{text}</div>
+        <div class="fit-result">{result}</div>
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,17 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  filter: LandingCopy["filter"];
+};
+
+const { filter } = Astro.props;
+---
+
+<div class="filter-box">
+  <div>
+    <span class="filter-badge">{filter.badge}</span>
+    <h2>{filter.title}</h2>
+  </div>
+  <p>{filter.copy}</p>
+</div>

@@ -1,0 +1,99 @@
+---
+import AuditSteps from "@components/AuditSteps.astro";
+import FilterBox from "@components/FilterBox.astro";
+import Footer from "@components/Footer.astro";
+import FormatCards from "@components/FormatCards.astro";
+import Header from "@components/Header.astro";
+import Hero from "@components/Hero.astro";
+import LeadForm from "@components/LeadForm.astro";
+import ProcessMap from "@components/ProcessMap.astro";
+import ScopeCards from "@components/ScopeCards.astro";
+import SectionHead from "@components/SectionHead.astro";
+import ValueCards from "@components/ValueCards.astro";
+import FitList from "@components/FitList.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { copy, type Lang } from "@data/site";
+
+type Props = {
+  lang: Lang;
+  path?: string;
+};
+
+const { lang, path } = Astro.props;
+const page = copy[lang];
+const canonicalPath = path ?? page.meta.path;
+---
+
+<BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath}>
+  <Header lang={lang} nav={page.nav} />
+  <main id="top">
+    <Hero hero={page.hero} />
+
+    <section id="what" class="white-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.what.kicker} title={page.what.title} lead={page.what.lead} />
+        <ValueCards cards={page.what.cards} />
+      </div>
+    </section>
+
+    <section id="formats" class="mint-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.formats.kicker} title={page.formats.title} lead={page.formats.lead} />
+        <FormatCards cards={page.formats.cards} />
+      </div>
+    </section>
+
+    <section class="white-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.fit.kicker} title={page.fit.title} />
+        <FitList items={page.fit.items} />
+      </div>
+    </section>
+
+    <section class="navy-band">
+      <div class="section-inner">
+        <FilterBox filter={page.filter} />
+      </div>
+    </section>
+
+    <section id="audit" class="white-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.audit.kicker} title={page.audit.title} lead={page.audit.lead} />
+        <AuditSteps steps={page.audit.steps} />
+      </div>
+    </section>
+
+    <section id="example" class="mint-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.example.kicker} title={page.example.title} lead={page.example.lead} />
+        <ProcessMap example={page.example} />
+      </div>
+    </section>
+
+    <section class="white-band">
+      <div class="section-inner">
+        <SectionHead kicker={page.scope.kicker} title={page.scope.title} />
+        <ScopeCards scope={page.scope} />
+      </div>
+    </section>
+
+    <section id="contact" class="navy-band">
+      <div class="section-inner contact-grid">
+        <div class="section-head">
+          <span class="section-kicker">{page.contact.kicker}</span>
+          <h2>{page.contact.title}</h2>
+          <p>{page.contact.lead}</p>
+          <div class="inline-actions">
+            <a class="btn btn-primary" href={`mailto:info@02signal.ai?subject=${encodeURIComponent(page.form.mailSubject)}`}>
+              {page.contact.emailCta}
+            </a>
+          </div>
+        </div>
+        <div class="contact-panel">
+          <LeadForm form={page.form} />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

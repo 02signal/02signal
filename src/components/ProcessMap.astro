@@ -1,0 +1,23 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  example: LandingCopy["example"];
+};
+
+const { example } = Astro.props;
+---
+
+<div class="process-board">
+  {
+    example.processes.map((process, index) => (
+      <div class="process-pill">
+        <strong>{String(index + 1).padStart(2, "0")} · {process.name}</strong>
+        <span class={`status ${process.status}`}>{example.statuses[process.status]}</span>
+      </div>
+    ))
+  }
+</div>
+<div class="legend">
+  {example.legend.map((item) => <span>{item}</span>)}
+</div>

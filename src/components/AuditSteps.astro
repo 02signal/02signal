@@ -1,0 +1,21 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  steps: LandingCopy["audit"]["steps"];
+};
+
+const { steps } = Astro.props;
+---
+
+<div class="steps">
+  {
+    steps.map((step) => (
+      <article class="step">
+        <span class="step-tag">{step.tag}</span>
+        <h3>{step.title}</h3>
+        <p>{step.text}</p>
+      </article>
+    ))
+  }
+</div>

@@ -1,0 +1,15 @@
+---
+type Props = {
+  kicker: string;
+  title: string;
+  lead?: string;
+};
+
+const { kicker, title, lead } = Astro.props;
+---
+
+<div class="section-head">
+  <span class="section-kicker">{kicker}</span>
+  <h2>{title}</h2>
+  {lead && <p>{lead}</p>}
+</div>

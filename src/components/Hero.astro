@@ -1,0 +1,24 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  hero: LandingCopy["hero"];
+};
+
+const { hero } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">{hero.eyebrow}</span>
+    <h1>{hero.title}</h1>
+    <p>{hero.lead}</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">{hero.primary}</a>
+      <a href="#formats" class="btn btn-secondary">{hero.secondary}</a>
+    </div>
+    <div class="hero-proof">
+      {hero.proof.map(([value, label]) => <div class="proof-item"><strong>{value}</strong><span>{label}</span></div>)}
+    </div>
+  </div>
+</section>

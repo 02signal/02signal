@@ -1,0 +1,20 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  scope: LandingCopy["scope"];
+};
+
+const { scope } = Astro.props;
+---
+
+<div class="grid-2">
+  <div class="card">
+    <h3>{scope.includedTitle}</h3>
+    <ul class="check-list">{scope.included.map((item) => <li>{item}</li>)}</ul>
+  </div>
+  <div class="card">
+    <h3>{scope.notIncludedTitle}</h3>
+    <ul class="check-list">{scope.notIncluded.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</div>

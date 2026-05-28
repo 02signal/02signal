@@ -1,0 +1,96 @@
+---
+import type { LandingCopy } from "@data/site";
+
+type Props = {
+  form: LandingCopy["form"];
+};
+
+const { form } = Astro.props;
+---
+
+<form
+  class="lead-form"
+  data-lead-form
+  data-mail-subject={form.mailSubject}
+  data-label-company={form.company}
+  data-label-size={form.size}
+  data-label-name={form.name}
+  data-label-role={form.role}
+  data-label-email={form.email}
+  data-label-need={form.need}
+  data-label-candidates={form.candidates}
+  data-label-message={form.message}
+>
+  <div class="form-grid">
+    <div class="field">
+      <label for="company">{form.company}</label>
+      <input id="company" name="company" required autocomplete="organization" />
+    </div>
+    <div class="field">
+      <label for="size">{form.size}</label>
+      <select id="size" name="size" required>
+        {form.sizes.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="name">{form.name}</label>
+      <input id="name" name="name" required autocomplete="name" />
+    </div>
+    <div class="field">
+      <label for="role">{form.role}</label>
+      <input id="role" name="role" required />
+    </div>
+    <div class="field full">
+      <label for="email">{form.email}</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="need">{form.need}</label>
+      <select id="need" name="need" required>
+        {form.needs.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="candidates">{form.candidates}</label>
+      <select id="candidates" name="candidates" required>
+        {form.candidateOptions.map((value) => <option value={value}>{value}</option>)}
+      </select>
+    </div>
+    <div class="field full">
+      <label for="message">{form.message}</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+  </div>
+  <label class="checkbox">
+    <input type="checkbox" required />
+    <span>{form.consent}</span>
+  </label>
+  <button class="btn btn-primary" type="submit">{form.submit}</button>
+  <p class="form-note">{form.note}</p>
+</form>
+
+<script>
+  document.querySelectorAll("[data-lead-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const currentForm = event.currentTarget;
+      if (!(currentForm instanceof HTMLFormElement)) return;
+      const data = new FormData(currentForm);
+      const labels = currentForm.dataset;
+      const lines = [
+        `${labels.labelCompany}: ${data.get("company")}`,
+        `${labels.labelSize}: ${data.get("size")}`,
+        `${labels.labelName}: ${data.get("name")}`,
+        `${labels.labelRole}: ${data.get("role")}`,
+        `${labels.labelEmail}: ${data.get("email")}`,
+        `${labels.labelNeed}: ${data.get("need")}`,
+        `${labels.labelCandidates}: ${data.get("candidates")}`,
+        "",
+        `${labels.labelMessage}:`,
+        `${data.get("message")}`
+      ];
+      const subject = labels.mailSubject ?? "02Signal request";
+      window.location.href = `mailto:info@02signal.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    });
+  });
+</script>
