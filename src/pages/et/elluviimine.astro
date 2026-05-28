@@ -12,6 +12,49 @@ const nav: LandingCopy["nav"] = [
   ["#pricing", "Hinnad"],
   ["#contact", "Kontakt"]
 ];
+
+const site = Astro.site ?? "https://02signal.ai";
+const pageUrl = new URL("/et/elluviimine/", site).toString();
+const schema = [
+  {
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+    name: "AI abivahendi ehitus",
+    serviceType: "AI automatiseerimine ja n8n töövoo ehitus Eesti väikeettevõttele",
+    description:
+      "Väikese AI abilise ehitus korduva töö jaoks: AI koostab mustandi, inimene kontrollib ning tulemus liigub e-maili, Telegrami, tabelisse või muusse töövahendisse.",
+    provider: {
+      "@id": new URL("/#organization", site).toString()
+    },
+    areaServed: "EE",
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "EUR",
+      lowPrice: 3900,
+      highPrice: 9900,
+      offerCount: 3,
+      availability: "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Avaleht",
+        item: new URL("/et/", site).toString()
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "AI abivahendi ehitus",
+        item: pageUrl
+      }
+    ]
+  }
+];
 ---
 
 <BaseLayout
@@ -19,6 +62,7 @@ const nav: LandingCopy["nav"] = [
   title="02Signal | AI abivahendi ehitus"
   description="Lihtsa AI abivahendi ehitus Eesti mikro- ja väikeettevõttele: korduv töö, inimese kontroll ja selge äriline kasu."
   path="/et/elluviimine/"
+  schema={schema}
 >
   <Header lang="et" nav={nav} />
   <main>

@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
 
+# AI-readable site summary:
+# https://02signal.ai/llms.txt
+
+# OpenAI search and AI crawlers. The general rule above already allows them;
+# these explicit groups make the intention clear.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 Sitemap: https://02signal.ai/sitemap-index.xml

@@ -8,11 +8,50 @@ type Props = {
   title: string;
   description: string;
   path: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 };
 
-const { lang, title, description, path } = Astro.props;
-const canonical = new URL(path, Astro.site ?? "https://02signal.ai").toString();
+const { lang, title, description, path, schema } = Astro.props;
+const site = Astro.site ?? "https://02signal.ai";
+const siteUrl = new URL("/", site).toString();
+const canonical = new URL(path, site).toString();
 const alternates = alternateLinks(lang);
+const pageSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      name: "02Signal",
+      legalName: "Ettevõtluskeskus OÜ",
+      url: siteUrl,
+      email: "info@02signal.ai",
+      description:
+        "02Signal aitab Eesti mikro- ja väikeettevõtetel valida ja ehitada esimese praktilise AI abilise.",
+      areaServed: "EE",
+      knowsAbout: [
+        "AI automatiseerimine",
+        "AI abiline",
+        "n8n automatiseerimine",
+        "agentic workflow",
+        "äriprotsesside automatiseerimine"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      name: "02Signal",
+      url: siteUrl,
+      publisher: {
+        "@id": `${siteUrl}#organization`
+      },
+      inLanguage: ["et", "en", "ru"]
+    },
+    ...pageSchema
+  ]
+};
+const schemaJson = JSON.stringify(schemaGraph).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -23,14 +62,15 @@ const alternates = alternateLinks(lang);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {alternates.map((item) => <link rel="alternate" hreflang={item.lang} href={new URL(item.href, Astro.site ?? "https://02signal.ai").toString()} />)}
-    <link rel="alternate" hreflang="x-default" href={new URL("/et/", Astro.site ?? "https://02signal.ai").toString()} />
+    {alternates.map((item) => <link rel="alternate" hreflang={item.lang} href={new URL(item.href, site).toString()} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL("/et/", site).toString()} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL("/images/hero-process-audit.png", Astro.site ?? "https://02signal.ai").toString()} />
+    <meta property="og:image" content={new URL("/images/hero-process-audit.png", site).toString()} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline type="application/ld+json" set:html={schemaJson}></script>
   </head>
   <body>
     <slot />

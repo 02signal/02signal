@@ -17,7 +17,9 @@ export type LandingCopy = {
     title: string;
     lead: string;
     primary: string;
+    primaryHref?: string;
     secondary: string;
+    secondaryHref?: string;
     proof: Pair[];
   };
   what: {
@@ -100,14 +102,14 @@ export type LandingCopy = {
 export const copy: Record<Lang, LandingCopy> = {
   et: {
     meta: {
-      title: "02Signal | Kust alustada AI-ga?",
+      title: "02Signal | AI automatiseerimine Eesti väikeettevõttele",
       description:
-        "02Signal aitab ettevõtte omanikul valida esimese töö, mida AI abil lihtsamaks ja kiiremaks teha.",
+        "02Signal aitab Eesti mikro- ja väikeettevõttel valida esimese AI kasutuskoha, hinnata valmisolekut ja ehitada väikese AI abilise.",
       path: "/et/"
     },
     nav: [
       ["#what", "Mida teeme"],
-      ["#formats", "Võimalused"],
+      ["#formats", "Hinnad"],
       ["/et/kiirkontroll/", "Kiirkontroll"],
       ["/et/elluviimine/", "Ehitus"],
       ["#audit", "Kuidas käib"],
@@ -119,12 +121,14 @@ export const copy: Record<Lang, LandingCopy> = {
       title: "Aitame valida töö, mille AI saab päriselt lihtsamaks teha.",
       lead:
         "AI-ga ei pea alustama suure ja kalli projektiga. Vaatame teie korduvad tööd läbi ja ütleme selgelt, kust on kõige mõistlikum alustada.",
-      primary: "Broneeri 30-min kõne",
-      secondary: "Vaata võimalusi",
+      primary: "Tee tasuta kiirkontroll",
+      primaryHref: "/et/kiirkontroll/",
+      secondary: "Vaata hindu",
+      secondaryHref: "#formats",
       proof: [
         ["10 min", "tasuta kiirkontroll"],
-        ["1-2 nädalat", "põhjalik tööde ülevaatus"],
-        ["1 selge valik", "mida teha esimesena"]
+        ["490 € + KM", "väikseim tasuline nõu"],
+        ["al 3 900 €", "esimene AI abiline"]
       ]
     },
     what: {
@@ -151,10 +155,10 @@ export const copy: Record<Lang, LandingCopy> = {
       ]
     },
     formats: {
-      kicker: "Kaks lihtsat võimalust",
-      title: "Alusta väikese kontrolliga või tee põhjalik ülevaatus.",
+      kicker: "Kolm selget järgmist sammu",
+      title: "Tasuta kontroll, kindel nõu või valmis AI abiline.",
       lead:
-        "Kui tahate lihtsalt teada, kas olete AI jaoks valmis, alustage kiirkontrollist. Kui laual on mitu ideed ja vaja on otsustada, mida päriselt teha, sobib põhjalik ülevaatus.",
+        "Valige samm selle järgi, kui selge teie olukord juba on. Kui te ei tea, kust alustada, alustage kiirkontrollist. Kui soovite kohe hinda, on väikseim tasuline samm 490 € + KM.",
       cards: [
         {
           label: "Kiire algus",
@@ -166,17 +170,31 @@ export const copy: Record<Lang, LandingCopy> = {
           href: "/et/kiirkontroll/"
         },
         {
-          label: "Kui on vaja otsustada",
-          title: "Tööde ülevaatus",
-          text: "Sobib, kui ettevõttes on mitu kohta, kus AI võiks aidata, aga ei ole selge, kust alustada.",
+          label: "Kui tahate kindlat otsust",
+          title: "AI alguse nõu",
+          text: "Sobib, kui tahate omanikuna rahulikult aru saada, kas AI aitab teie ettevõttes päriselt või mitte.",
           items: [
-            "15-20 korduva töö kaart",
-            "soovitus, mida teha esimesena",
-            "mida mitte praegu puutuda",
-            "selge arutelu omaniku ja võtmeinimestega"
+            "90-min kohtumine omaniku või juhiga",
+            "2-3 ajaröövli läbivaatamine",
+            "üks soovitatud esimene töö või aus “praegu mitte”",
+            "järgmise sammu hinnavahemik"
           ],
           price: "lihtsaim tasuline samm 490 € + KM",
           cta: "Räägime üle"
+        },
+        {
+          label: "Kui esimene töö on selge",
+          title: "AI abivahendi ehitus",
+          text: "Sobib, kui on üks korduv töö, mida inimene saab alguses kontrollida ja mille kasu saab mõõta.",
+          items: [
+            "väike töövoog või AI mustand",
+            "inimese kontroll enne kasutamist",
+            "testimine päris näidetega",
+            "lihtne juhend ja üleandmine"
+          ],
+          price: "alates 3 900 € + KM",
+          cta: "Vaata ehitust",
+          href: "/et/elluviimine/"
         }
       ]
     },

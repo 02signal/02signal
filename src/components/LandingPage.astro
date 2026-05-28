@@ -22,9 +22,61 @@ type Props = {
 const { lang, path } = Astro.props;
 const page = copy[lang];
 const canonicalPath = path ?? page.meta.path;
+const site = Astro.site ?? "https://02signal.ai";
+const pageUrl = new URL(canonicalPath, site).toString();
+const schema = [
+  {
+    "@type": "Service",
+    "@id": `${pageUrl}#service`,
+    name: page.hero.title,
+    serviceType:
+      lang === "et"
+        ? "AI automatiseerimine, AI kiirkontroll ja AI abivahendi ehitus"
+        : lang === "en"
+          ? "AI automation process audit and implementation"
+          : "Аудит процессов и внедрение AI-автоматизации",
+    description: page.meta.description,
+    provider: {
+      "@id": new URL("/#organization", site).toString()
+    },
+    areaServed: lang === "et" ? "EE" : "Europe",
+    audience: {
+      "@type": "Audience",
+      audienceType:
+        lang === "et"
+          ? "Eesti mikro- ja väikeettevõtte omanikud ja juhid"
+          : lang === "en"
+            ? "SME owners and leaders"
+            : "Руководители малого и среднего бизнеса"
+    },
+    offers:
+      lang === "et"
+        ? {
+            "@type": "AggregateOffer",
+            priceCurrency: "EUR",
+            lowPrice: 0,
+            highPrice: 9900,
+            offerCount: 4,
+            availability: "https://schema.org/InStock"
+          }
+        : undefined
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "02Signal",
+        item: new URL(`/${lang}/`, site).toString()
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath}>
+<BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath} schema={schema}>
   <Header lang={lang} nav={page.nav} />
   <main id="top">
     <Hero hero={page.hero} />

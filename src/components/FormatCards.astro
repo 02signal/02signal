@@ -6,9 +6,10 @@ type Props = {
 };
 
 const { cards } = Astro.props;
+const gridClass = cards.length === 3 ? "grid-3" : "grid-2";
 ---
 
-<div class="grid-2">
+<div class={gridClass}>
   {
     cards.map((card, index) => (
       <article class="offer">
