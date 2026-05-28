@@ -105,10 +105,15 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
               </div>
             </div>
 
+            <div class="quiz-progress" aria-live="polite">
+              <span data-progress-label>1 / {diagnosticQuestions.length}</span>
+              <div><span data-progress-bar></span></div>
+            </div>
+
             <div class="question-list">
               {
                 diagnosticQuestions.map((question, index) => (
-                  <fieldset class="question-card">
+                  <fieldset class="question-card" data-question-card data-question-index={index}>
                     <legend>
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       {question.text}
@@ -128,11 +133,19 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
               }
             </div>
 
-            <label class="checkbox">
-              <input type="checkbox" required />
-              <span>Nõustun, et 02Signal kasutab vastuseid minuga ühenduse võtmiseks ja kokkuvõtte koostamiseks.</span>
-            </label>
-            <button class="btn btn-primary" type="submit">Näita tulemust</button>
+            <p class="form-note quiz-message" data-quiz-message>Vastake küsimusele ja liikuge edasi.</p>
+            <div class="quiz-actions">
+              <button class="btn btn-light" type="button" data-prev-question>Tagasi</button>
+              <button class="btn btn-primary" type="button" data-next-question>Järgmine</button>
+            </div>
+
+            <div class="quiz-submit" data-submit-panel hidden>
+              <label class="checkbox">
+                <input type="checkbox" required />
+                <span>Nõustun, et 02Signal kasutab vastuseid minuga ühenduse võtmiseks ja kokkuvõtte koostamiseks.</span>
+              </label>
+              <button class="btn btn-primary" type="submit">Näita tulemust</button>
+            </div>
           </form>
         </div>
 
@@ -151,6 +164,11 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
             <button class="btn btn-light" type="button" data-copy-result>Kopeeri kokkuvõte</button>
           </div>
           <p class="form-note" data-result-note>Kui andmebaasi ühendus pole veel seadistatud, avaneb e-mail valmis tekstiga.</p>
+          <div class="mail-fallback" data-mail-fallback hidden>
+            <a class="btn btn-light" data-mail-link href="#">Ava e-kiri uuesti</a>
+            <p>Kui e-mail ei avanenud, kopeerige allolev tekst ja saatke see aadressile info@02signal.ai.</p>
+            <textarea data-report-text readonly></textarea>
+          </div>
         </aside>
       </div>
     </section>
@@ -164,39 +182,40 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         </div>
         <div class="price-grid">
           <article class="price-card">
-            <span class="offer-label">Alusta siit</span>
+            <span class="offer-label">Kui tahate enne ise mõelda</span>
             <h3>Tasuta kiirkontroll</h3>
-            <p>Teete küsimustiku ise ära ja saadate tulemuse meile.</p>
+            <p>Saate esimese pildi, kas teie ettevõttes on mõistlik AI-ga kohe alustada või tuleks enne infot korrastada.</p>
             <strong>0 €</strong>
             <ul class="check-list">
-              <li>20 lihtsat küsimust</li>
-              <li>tulemus kohe ekraanil</li>
-              <li>sobib esimese vestluse ettevalmistuseks</li>
+              <li>20 lihtsat küsimust, üks korraga</li>
+              <li>tulemus ja graafikud kohe ekraanil</li>
+              <li>hea ettevalmistus esimese kõne jaoks</li>
             </ul>
           </article>
           <article class="price-card highlighted">
-            <span class="offer-label">Kõige väiksem tasuline samm</span>
-            <h3>AI alguse nõustamine</h3>
-            <p>90-min kohtumine, kus vaatame teie tulemuse ja 2-3 korduvat tööd läbi.</p>
+            <span class="offer-label">Kõige väiksem kindel samm</span>
+            <h3>AI alguse nõu</h3>
+            <p>90-min kohtumine omanikuga. Vaatame teie tulemuse ja 2-3 ajaröövlit läbi ning ütleme, mida tasub järgmisena teha.</p>
             <strong>490 € + KM</strong>
             <ul class="check-list">
-              <li>üks kohtumine omanikuga</li>
-              <li>soovitus, mida teha esimesena</li>
-              <li>ühe lehe kokkuvõte e-mailile</li>
-              <li>hinnang, kas on mõtet ehitusega jätkata</li>
+              <li>selge vastus: kas AI aitab siin päriselt</li>
+              <li>üks soovitatud esimene töö või aus “praegu mitte”</li>
+              <li>lihtne ühe lehe kokkuvõte</li>
+              <li>järgmise sammu hinnavahemik</li>
             </ul>
           </article>
           <article class="price-card">
-            <span class="offer-label">Kui töid on mitu</span>
-            <h3>Tööde ülevaatus</h3>
-            <p>Kui ettevõttes on mitu võimalikku AI kohta ja vaja on selget valikut.</p>
-            <strong>alates 1 900 € + KM</strong>
+            <span class="offer-label">Kui raha ja aega ei taha valesse kohta panna</span>
+            <h3>AI stardiplaan</h3>
+            <p>Vaatame ettevõtte korduvad tööd läbi ja valime ühe koha, kus väike AI abiline võiks kõige kiiremini kasu tuua.</p>
+            <strong>1 900-3 900 € + KM</strong>
             <ul class="check-list">
-              <li>15-20 korduva töö kaart</li>
-              <li>üks soovitatud esimene samm</li>
-              <li>mida praegu mitte puutuda</li>
-              <li>järgmiste sammude plaan</li>
+              <li>mikroettevõte 1-5 inimest: alates 1 900 €</li>
+              <li>väike tiim 6-15 inimest: alates 2 900 €</li>
+              <li>üks konkreetne esimene AI kasutuskoht</li>
+              <li>kirjas, mida teha, mida vältida ja mis võiks maksta</li>
             </ul>
+            <a class="btn btn-light" href="/et/elluviimine/">Kui tahate kohe ehitada</a>
           </article>
         </div>
       </div>
@@ -232,7 +251,18 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
       if (!app || !form || !resultPanel || !dataNode) return;
 
       const data = JSON.parse(dataNode.textContent || "{}");
+      const questionCards = Array.from(form.querySelectorAll("[data-question-card]"));
+      const progressLabel = form.querySelector("[data-progress-label]");
+      const progressBar = form.querySelector("[data-progress-bar]");
+      const quizMessage = form.querySelector("[data-quiz-message]");
+      const previousButton = form.querySelector("[data-prev-question]");
+      const nextButton = form.querySelector("[data-next-question]");
+      const submitPanel = form.querySelector("[data-submit-panel]");
+      const mailFallback = resultPanel.querySelector("[data-mail-fallback]");
+      const mailLink = resultPanel.querySelector("[data-mail-link]");
+      const reportText = resultPanel.querySelector("[data-report-text]");
       let latestPayload = null;
+      let currentQuestion = 0;
 
       const getLevel = (score) => {
         return [...data.levels].reverse().find((level) => score >= level.min) || data.levels[0];
@@ -263,6 +293,39 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
           "",
           "Soovin arutada järgmist sammu 02Signaliga."
         ].join("\n");
+      };
+
+      const showMailFallback = (payload, note = "E-mail peaks avanema. Kui ei avanenud, kasutage allolevat varuvarianti.") => {
+        const text = makeReportText(payload);
+        const href = `mailto:info@02signal.ai?subject=${encodeURIComponent("02Signal AI kiirkontrolli tulemus")}&body=${encodeURIComponent(text)}`;
+        mailLink.href = href;
+        reportText.value = text;
+        mailFallback.hidden = false;
+        resultPanel.querySelector("[data-result-note]").textContent = note;
+        return href;
+      };
+
+      const currentQuestionAnswered = () => {
+        const card = questionCards[currentQuestion];
+        if (!card) return true;
+        const input = card.querySelector("input[type='radio']");
+        if (!input) return true;
+        return Boolean(form.querySelector(`input[name="${input.name}"]:checked`));
+      };
+
+      const updateQuestionView = () => {
+        questionCards.forEach((card, index) => {
+          card.hidden = index !== currentQuestion;
+        });
+        const progress = ((currentQuestion + 1) / questionCards.length) * 100;
+        progressLabel.textContent = `${currentQuestion + 1} / ${questionCards.length}`;
+        progressBar.style.width = `${progress}%`;
+        previousButton.disabled = currentQuestion === 0;
+        nextButton.hidden = currentQuestion === questionCards.length - 1;
+        submitPanel.hidden = currentQuestion !== questionCards.length - 1;
+        quizMessage.textContent = currentQuestion === questionCards.length - 1
+          ? "Viimane küsimus. Pärast vastamist saate tulemust näha."
+          : "Vastake küsimusele ja liikuge edasi.";
       };
 
       const renderRadar = (dimensionScores) => {
@@ -349,6 +412,10 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
         latestPayload = buildPayload();
         if (!latestPayload) return;
         resultPanel.hidden = false;
@@ -358,6 +425,26 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         resultPanel.querySelector("[data-radar-chart]").innerHTML = renderRadar(latestPayload.dimensionScores);
         resultPanel.querySelector("[data-gap-map]").innerHTML = renderGapMap(latestPayload.dimensionScores);
         resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (!currentQuestionAnswered()) {
+          quizMessage.textContent = "Palun valige üks vastus, siis saate edasi liikuda.";
+          return;
+        }
+        currentQuestion = Math.min(currentQuestion + 1, questionCards.length - 1);
+        updateQuestionView();
+      });
+
+      previousButton.addEventListener("click", () => {
+        currentQuestion = Math.max(currentQuestion - 1, 0);
+        updateQuestionView();
+      });
+
+      questionCards.forEach((card) => {
+        card.addEventListener("change", () => {
+          quizMessage.textContent = "Vastus salvestatud.";
+        });
       });
 
       resultPanel.querySelector("[data-copy-result]").addEventListener("click", async () => {
@@ -370,18 +457,26 @@ const webhookUrl = import.meta.env.PUBLIC_DIAGNOSTIC_WEBHOOK_URL ?? "";
         if (!latestPayload) return;
         const webhookUrl = app.dataset.webhookUrl?.trim();
         if (webhookUrl) {
-          const response = await fetch(webhookUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(latestPayload)
-          });
-          resultPanel.querySelector("[data-result-note]").textContent = response.ok
-            ? "Tulemus saadetud. Võtame ühendust ühe tööpäeva jooksul."
-            : "Saatmine ei õnnestunud. Palun kasutage e-maili.";
+          try {
+            const response = await fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(latestPayload)
+            });
+            resultPanel.querySelector("[data-result-note]").textContent = response.ok
+              ? "Tulemus saadetud. Võtame ühendust ühe tööpäeva jooksul."
+              : "Saatmine ei õnnestunud. Palun kasutage e-maili.";
+            if (!response.ok) showMailFallback(latestPayload, "Saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
+          } catch {
+            showMailFallback(latestPayload, "Saatmine ei õnnestunud. Palun saatke tulemus e-mailiga.");
+          }
           return;
         }
-        window.location.href = `mailto:info@02signal.ai?subject=${encodeURIComponent("02Signal AI kiirkontrolli tulemus")}&body=${encodeURIComponent(makeReportText(latestPayload))}`;
+        const href = showMailFallback(latestPayload);
+        window.location.href = href;
       });
+
+      updateQuestionView();
     })();
   </script>
 </BaseLayout>

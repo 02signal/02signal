@@ -109,6 +109,7 @@ export const copy: Record<Lang, LandingCopy> = {
       ["#what", "Mida teeme"],
       ["#formats", "Võimalused"],
       ["/et/kiirkontroll/", "Kiirkontroll"],
+      ["/et/elluviimine/", "Ehitus"],
       ["#audit", "Kuidas käib"],
       ["#example", "Näide"],
       ["#contact", "Võta ühendust"]

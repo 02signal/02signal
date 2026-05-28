@@ -1,0 +1,186 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { LandingCopy } from "@data/site";
+
+const nav: LandingCopy["nav"] = [
+  ["/et/", "Avaleht"],
+  ["/et/kiirkontroll/", "Kiirkontroll"],
+  ["#who", "Kellele"],
+  ["#steps", "Kuidas käib"],
+  ["#pricing", "Hinnad"],
+  ["#contact", "Kontakt"]
+];
+---
+
+<BaseLayout
+  lang="et"
+  title="02Signal | AI abivahendi ehitus"
+  description="Lihtsa AI abivahendi ehitus Eesti mikro- ja väikeettevõttele: korduv töö, inimese kontroll ja selge äriline kasu."
+  path="/et/elluviimine/"
+>
+  <Header lang="et" nav={nav} />
+  <main>
+    <section class="diagnostic-hero implementation-hero">
+      <div class="section-inner diagnostic-hero-grid">
+        <div>
+          <span class="eyebrow">Kui esimene töö on valitud</span>
+          <h1>Ehitame väikese AI abilise, mis aitab ühe päris töö ära teha.</h1>
+          <p>
+            Mitte “AI strateegia” ja mitte suur IT projekt. Valime ühe korduva töö,
+            teeme lihtsa abivahendi ja jätame inimese alguses kontrollima.
+          </p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">Vaata hindu</a>
+            <a href="mailto:info@02signal.ai?subject=02Signal%20AI%20abivahendi%20ehitus" class="btn btn-secondary">Küsi pakkumist</a>
+          </div>
+        </div>
+        <aside class="diagnostic-summary-card">
+          <strong>Lihtne näide</strong>
+          <ul class="check-list">
+            <li>klient saadab küsimuse või päringu</li>
+            <li>AI koostab vastuse mustandi</li>
+            <li>inimene kontrollib ja kinnitab</li>
+            <li>tulemus läheb e-maili, Telegrami või tabelisse</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="who" class="white-band">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-kicker">Kellele see sobib</span>
+          <h2>Ehitus on mõistlik siis, kui töö on piisavalt konkreetne.</h2>
+          <p>Kui töö on veel udune, alustame kiirkontrollist või nõustamisest. Kui töö on selge, saab juba väikese lahenduse valmis teha.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Sobib</h3>
+            <ul class="check-list">
+              <li>üks korduv töö võtab iga nädal aega</li>
+              <li>info on olemas Excelis, e-mailis, kaustas, CRM-is või veebis</li>
+              <li>inimene saab tulemust enne saatmist kontrollida</li>
+              <li>ettevõttes on üks vastutaja, kes annab tagasisidet</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Ei sobi esimeseks sammuks</h3>
+            <ul class="check-list">
+              <li>otsus on väga riskantne ja viga maksab palju</li>
+              <li>vajalik info on ainult inimeste peas</li>
+              <li>keegi ei saa lahendust testida ega kontrollida</li>
+              <li>eesmärk on “teeme kõik AI-ga”, aga esimene töö pole valitud</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="steps" class="mint-band">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-kicker">Kuidas käib</span>
+          <h2>Kolm sammu, et risk püsiks väike.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-tag">Samm 1</span>
+            <h3>Saame tööst aru</h3>
+            <p>Kirjeldame, kes mida teeb, kust info tuleb ja millal inimene peab kindlasti sekkuma.</p>
+          </article>
+          <article class="step">
+            <span class="step-tag">Samm 2</span>
+            <h3>Ehitame väikese töövoo</h3>
+            <p>Loome lihtsa lahenduse: vorm, e-mail, tabel, teavitus, AI mustand või muu praktiline samm.</p>
+          </article>
+          <article class="step">
+            <span class="step-tag">Samm 3</span>
+            <h3>Testime ja anname üle</h3>
+            <p>Proovime päris näidetega, parandame juhiseid ja jätame teile lihtsa kasutusjuhendi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="white-band">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-kicker">Hinnad</span>
+          <h2>Hind sõltub peamiselt sellest, mitu inimest ja mitu töökohta on seotud.</h2>
+          <p>Allpool on Eesti mikro- ja väikeettevõtte jaoks mõistlik algus. Kui töö osutub liiga keeruliseks, ütleme seda enne ehitamist.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <span class="offer-label">1-5 inimest</span>
+            <h3>Esimene AI abiline</h3>
+            <p>Üks lihtne töövoog, üks vastutaja, inimene kontrollib tulemust.</p>
+            <strong>alates 3 900 € + KM</strong>
+            <ul class="check-list">
+              <li>2-3 nädalat</li>
+              <li>üks korduv töö</li>
+              <li>AI mustand või kokkuvõte</li>
+              <li>lihtne juhend ja üleandmine</li>
+            </ul>
+          </article>
+          <article class="price-card highlighted">
+            <span class="offer-label">6-15 inimest</span>
+            <h3>Väike töövoog tiimile</h3>
+            <p>Kui sama töö puudutab mitut inimest ja vaja on kokku leppida, kes mida kontrollib.</p>
+            <strong>alates 5 900 € + KM</strong>
+            <ul class="check-list">
+              <li>3-5 nädalat</li>
+              <li>üks töövoog mitme kasutajaga</li>
+              <li>teavitused, tabel või kinnitusring</li>
+              <li>testimine päris näidetega</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <span class="offer-label">16-50 inimest</span>
+            <h3>Piloot ühe protsessi peal</h3>
+            <p>Kui vaja on juba mõõta enne ja pärast ning näidata tulemust juhile või nõukogule.</p>
+            <strong>alates 9 900 € + KM</strong>
+            <ul class="check-list">
+              <li>6-8 nädalat</li>
+              <li>üks selgelt valitud protsess</li>
+              <li>mõõdikud enne ja pärast</li>
+              <li>üleandmine teie vastutajale</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="navy-band">
+      <div class="section-inner">
+        <div class="filter-box">
+          <div>
+            <span class="filter-badge">Turvaline piir</span>
+            <h2>Esimene lahendus ei tee kriitilisi otsuseid üksi.</h2>
+          </div>
+          <p>
+            Alguses on AI abiline, mitte juht. Ta koostab mustandi, leiab info või annab soovituse.
+            Inimene kinnitab. Nii õpime kiiresti, aga ei pane ettevõtet tarbetu riski alla.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="white-band">
+      <div class="section-inner contact-grid">
+        <div class="section-head">
+          <span class="section-kicker">Järgmine samm</span>
+          <h2>Kirjeldage ühte tööd, mis praegu aega võtab.</h2>
+          <p>Vastame ühe tööpäeva jooksul ja ütleme, kas see sobib lihtsaks esimeseks AI abiliseks või tasub enne teha ülevaatus.</p>
+        </div>
+        <div class="contact-panel">
+          <h3>Küsi pakkumist</h3>
+          <p class="small-copy">Kirjutage 3-5 lausega: mis töö on, kui tihti seda tehakse, kust info tuleb ja kes tulemust kontrollib.</p>
+          <a class="btn btn-primary" href="mailto:info@02signal.ai?subject=02Signal%20AI%20abivahendi%20ehitus">Kirjuta info@02signal.ai</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -799,20 +799,50 @@ textarea {
   gap: 12px;
 }
 
+.quiz-progress {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.quiz-progress div {
+  height: 9px;
+  background: #EEF2F7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.quiz-progress span span,
+.quiz-progress div span {
+  display: block;
+}
+
+.quiz-progress div span {
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  transition: width 0.2s ease;
+}
+
 .question-card {
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 16px;
+  padding: clamp(18px, 3vw, 28px);
   margin: 0;
+  background: #FBFCFE;
 }
 
 .question-card legend {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  font-weight: 850;
+  font-weight: 650;
   color: var(--navy);
   padding: 0;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.35;
 }
 
 .question-card legend span {
@@ -823,8 +853,8 @@ textarea {
 .answer-row {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 14px;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .answer-option {
@@ -837,7 +867,7 @@ textarea {
   gap: 7px;
   padding: 8px;
   color: var(--ink);
-  font-weight: 750;
+  font-weight: 550;
   cursor: pointer;
   text-align: center;
 }
@@ -850,6 +880,32 @@ textarea {
 .answer-option input {
   width: 14px;
   min-height: 14px;
+}
+
+.quiz-message {
+  min-height: 22px;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.quiz-actions .btn {
+  min-width: 140px;
+}
+
+.quiz-actions .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.quiz-submit {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 18px;
 }
 
 .result-panel {
@@ -976,6 +1032,23 @@ textarea {
   margin-top: 18px;
 }
 
+.mail-fallback {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #FBFCFE;
+  padding: 12px;
+  margin-top: 14px;
+}
+
+.mail-fallback p {
+  font-size: 0.92rem;
+}
+
+.mail-fallback textarea {
+  min-height: 180px;
+  font-size: 0.9rem;
+}
+
 .price-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1004,6 +1077,10 @@ textarea {
   color: var(--navy);
   font-size: 1.55rem;
   margin-top: 16px;
+}
+
+.price-card .btn {
+  margin-top: 18px;
 }
 
 @media (max-width: 980px) {
