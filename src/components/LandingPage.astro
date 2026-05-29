@@ -112,6 +112,29 @@ const decisionCards =
         }
       ]
     : null;
+const painCards =
+  lang === "et"
+    ? [
+        {
+          title: "Aeg kaob samadele käsitöödele",
+          text: "Pakkumised, kliendivastused, raportid või tellimuste sorteerimine võtavad iga nädal tunde."
+        },
+        {
+          title: "AI ideid on mitu, aga otsust ei ole",
+          text: "Üks tahab chatbot'i, teine raportit, kolmas pakkumiste abi. Keegi peab ütlema, millest päriselt alustada."
+        },
+        {
+          title: "Raha ei taha kulutada valesse kohta",
+          text: "Enne ehitamist peab olema selge, kas tulemust saab kontrollida ja kas väike samm annab nähtava kasu."
+        }
+      ]
+    : null;
+const phoneLabel =
+  lang === "et"
+    ? "Helista +372 5818 0435"
+    : lang === "en"
+      ? "Call +372 5818 0435"
+      : "Позвонить +372 5818 0435";
 ---
 
 <BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath} schema={schema} analyticsEvent={analyticsEvent}>
@@ -135,6 +158,31 @@ const decisionCards =
                   <p>{card.text}</p>
                   <em>{card.cta}</em>
                 </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      painCards && (
+        <section class="pain-band" aria-labelledby="pain-title">
+          <div class="section-inner pain-grid">
+            <div class="pain-copy">
+              <span class="section-kicker">Mure, mille lahendame</span>
+              <h2 id="pain-title">AI ei pea olema suur projekt. Kõigepealt tuleb leida üks töö, mis praegu aega sööb.</h2>
+              <p>
+                Meie töö on teha valik lihtsaks: kas siin on mõistlik AI-d kasutada, milline väike samm on ohutu ja mis võiks
+                selle maksta.
+              </p>
+            </div>
+            <div class="pain-list">
+              {painCards.map((card) => (
+                <article class="pain-item">
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                </article>
               ))}
             </div>
           </div>
@@ -200,6 +248,7 @@ const decisionCards =
             <a class="btn btn-primary" href={`mailto:info@02signal.ai?subject=${encodeURIComponent(page.form.mailSubject)}`}>
               {page.contact.emailCta}
             </a>
+            <a class="btn btn-secondary" href="tel:+37258180435">{phoneLabel}</a>
           </div>
         </div>
         <div class="contact-panel">

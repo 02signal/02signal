@@ -340,6 +340,50 @@ h3 {
   font-weight: 900;
 }
 
+.pain-band {
+  background: var(--paper);
+  padding: 72px 0;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.pain-copy h2 {
+  margin-top: 14px;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+}
+
+.pain-copy p {
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.pain-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pain-item {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.pain-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.pain-item p {
+  margin: 0;
+  color: var(--muted);
+}
+
 section {
   padding: 82px 0;
 }
@@ -1301,6 +1345,31 @@ textarea {
   margin-top: 18px;
 }
 
+.result-callout {
+  border: 1px solid rgba(0, 155, 141, 0.26);
+  background: var(--mint);
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 16px;
+}
+
+.result-callout strong {
+  display: block;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.result-callout p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.94rem;
+}
+
+.result-callout a {
+  color: var(--teal);
+  font-weight: 850;
+}
+
 .mail-fallback {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1372,6 +1441,7 @@ textarea {
   .grid-5,
   .grid-2,
   .choice-grid,
+  .pain-grid,
   .steps,
   .contact-grid,
   .footer-inner,

@@ -117,25 +117,25 @@ export const copy: Record<Lang, LandingCopy> = {
       ["#contact", "Võta ühendust"]
     ],
     hero: {
-      eyebrow: "Esimene mõistlik AI samm",
-      title: "Aitame valida töö, mille AI saab päriselt lihtsamaks teha.",
+      eyebrow: "AI automatiseerimine väikeettevõttele",
+      title: "Leiame ja ehitame esimese AI abilise korduva töö jaoks.",
       lead:
-        "AI-ga ei pea alustama suure ja kalli projektiga. Vaatame teie korduvad tööd läbi ja ütleme selgelt, kust on kõige mõistlikum alustada.",
-      primary: "Tee tasuta kiirkontroll",
+        "Kui pakkumised, kliendivastused, raportid või tellimused võtavad iga nädal aega, valime ühe väikese koha, kus AI aitab. Alustame tasuta kontrollist või 490 € nõustamisest.",
+      primary: "Tee 10 min tasuta kontroll",
       primaryHref: "/et/kiirkontroll/",
-      secondary: "Vaata hindu",
-      secondaryHref: "#formats",
+      secondary: "Helista +372 5818 0435",
+      secondaryHref: "tel:+37258180435",
       proof: [
-        ["10 min", "tasuta kiirkontroll"],
-        ["490 € + KM", "väikseim tasuline nõu"],
-        ["al 1 900 €", "stardiplaan või ehitus"]
+        ["10 min", "näete, kas AI sobib"],
+        ["490 € + KM", "selge otsus ja hinnavahemik"],
+        ["al 1 900 €", "stardiplaan või väike ehitus"]
       ]
     },
     what: {
       kicker: "Mida 02Signal teeb",
-      title: "Me aitame aru saada, kus AI annab päriselt kasu.",
+      title: "Me ei müü AI imelahendust. Me valime ühe töö, kus kasu on näha.",
       lead:
-        "Kõige suurem viga on alustada kohast, kus tulemust ei ole näha. Siis kulub raha, inimesed väsivad ja usk AI-sse kaob. Me aitame valida väikese, praktilise ja mõõdetava alguse.",
+        "Kõige kallim viga on alustada valest kohast. Siis kulub raha, inimesed väsivad ja lõpuks öeldakse, et AI ei tööta. Me aitame enne ehitamist aru saada, kas töö kordub, kas info on olemas ja kas tulemust saab kontrollida.",
       cards: [
         {
           number: "1",
@@ -156,9 +156,9 @@ export const copy: Record<Lang, LandingCopy> = {
     },
     formats: {
       kicker: "Neli selget järgmist sammu",
-      title: "Tasuta kontroll, kindel nõu, stardiplaan või valmis AI abiline.",
+      title: "Alustage väikese riskiga. Hind ja järgmine samm on kohe nähtav.",
       lead:
-        "Valige samm selle järgi, kui selge teie olukord juba on. Kui te ei tea, kust alustada, alustage kiirkontrollist. Väikseim tasuline samm on 490 € + KM.",
+        "Kui te ei tea, kust alustada, tehke tasuta kiirkontroll. Kui tahate inimesega otsuse läbi rääkida, on väikseim tasuline samm 490 € + KM.",
       cards: [
         {
           label: "Kiire algus",
@@ -172,12 +172,12 @@ export const copy: Record<Lang, LandingCopy> = {
         {
           label: "Kui tahate kindlat otsust",
           title: "AI alguse nõu",
-          text: "Sobib, kui tahate omanikuna rahulikult aru saada, kas AI aitab teie ettevõttes päriselt või mitte.",
+          text: "Sobib, kui tahate omanikuna teada, kas AI aitab teie ettevõttes päriselt või on targem praegu mitte ehitada.",
           items: [
             "90-min kohtumine omaniku või juhiga",
             "2-3 ajaröövli läbivaatamine",
-            "üks soovitatud esimene töö või aus “praegu mitte”",
-            "järgmise sammu hinnavahemik"
+            "üks soovitatud esimene töö või aus “ärge kulutage siia raha”",
+            "järgmise sammu hinnavahemik ja riskid"
           ],
           price: "lihtsaim tasuline samm 490 € + KM",
           cta: "Räägime üle"
@@ -185,12 +185,12 @@ export const copy: Record<Lang, LandingCopy> = {
         {
           label: "Kui kohti on mitu",
           title: "AI stardiplaan",
-          text: "Sobib, kui ettevõttes on mitu võimalikku AI kasutuskohta ja tahate enne ehitamist valida ühe mõistliku alguse.",
+          text: "Sobib, kui ettevõttes on mitu võimalikku AI kasutuskohta ja te ei taha raha kulutada valesse projekti.",
           items: [
             "lihtne nimekiri korduvatest töödest",
             "üks soovitatud esimene AI kasutuskoht",
-            "mida praegu mitte puutuda",
-            "lihtne plaan: mida teha, mida vältida ja mis võiks maksta"
+            "mida praegu mitte puutuda ja miks",
+            "lihtne plaan: mida teha, mida vältida ja mis see võiks maksta"
           ],
           price: "1 900-3 900 € + KM",
           cta: "Küsi stardiplaani"
@@ -291,8 +291,8 @@ export const copy: Record<Lang, LandingCopy> = {
     },
     contact: {
       kicker: "Järgmine samm",
-      title: "Räägime 30 minutiga läbi, kas see on teile mõistlik.",
-      lead: "Kirjeldage paari sõnaga, milline töö praegu aega võtab. Kui põhjalikku plaani ei ole vaja, ütleme seda ausalt.",
+      title: "Räägime lühidalt läbi, kas see on teile mõistlik.",
+      lead: "Kirjeldage paari sõnaga, milline töö praegu aega võtab. Kui AI ei ole praegu mõistlik samm, ütleme seda enne, kui kulutate raha.",
       emailCta: "Kirjuta info@02signal.ai"
     },
     form: {
