@@ -24,6 +24,18 @@ const page = copy[lang];
 const canonicalPath = path ?? page.meta.path;
 const site = Astro.site ?? "https://02signal.ai";
 const pageUrl = new URL(canonicalPath, site).toString();
+const analyticsEvent = path
+  ? {
+      name: "service_page_view",
+      params: {
+        service_name: canonicalPath.includes("process-audit") || canonicalPath.includes("protsessiaudit") || canonicalPath.includes("audit-processov")
+          ? "ai_stardiplaan"
+          : "landing_service",
+        service_title: page.hero.eyebrow,
+        page_type: "landing"
+      }
+    }
+  : undefined;
 const schema = [
   {
     "@type": "Service",
@@ -102,7 +114,7 @@ const decisionCards =
     : null;
 ---
 
-<BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath} schema={schema}>
+<BaseLayout lang={lang} title={page.meta.title} description={page.meta.description} path={canonicalPath} schema={schema} analyticsEvent={analyticsEvent}>
   <Header lang={lang} nav={page.nav} />
   <main id="top">
     <Hero hero={page.hero} />

@@ -56,7 +56,21 @@ const schema = [
 ];
 ---
 
-<BaseLayout lang="et" title={page.metaTitle} description={page.description} path={page.path} schema={schema}>
+<BaseLayout
+  lang="et"
+  title={page.metaTitle}
+  description={page.description}
+  path={page.path}
+  schema={schema}
+  analyticsEvent={{
+    name: "service_page_view",
+    params: {
+      service_name: page.slug,
+      service_title: page.eyebrow,
+      page_type: "guide"
+    }
+  }}
+>
   <Header lang="et" nav={nav} />
   <main>
     <section class="white-band guide-hero">

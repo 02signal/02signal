@@ -344,6 +344,13 @@ const schema = [
         return "vajab enne korda";
       };
 
+      const getScoreBucket = (score) => {
+        if (score >= 80) return "80-100";
+        if (score >= 60) return "60-79";
+        if (score >= 35) return "35-59";
+        return "0-34";
+      };
+
       const makeReportText = (payload) => {
         const rows = payload.dimensionScores
           .map((item) => `${item.title}: ${item.score}/100 - ${getDimensionLabel(item.score)}`)
@@ -539,6 +546,10 @@ const schema = [
         resultPanel.querySelector("[data-radar-chart]").innerHTML = renderRadar(latestPayload.dimensionScores);
         resultPanel.querySelector("[data-gap-map]").innerHTML = renderGapMap(latestPayload.dimensionScores);
         resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.track02SignalEvent?.("kiirkontroll_completed", {
+          score_bucket: getScoreBucket(latestPayload.totalScore),
+          result_level: latestPayload.level.title
+        });
 
         postDiagnosticEvent(latestPayload).then((result) => {
           if (result.ok) {
@@ -579,6 +590,9 @@ const schema = [
         contactStep.hidden = true;
         quizPanel.hidden = false;
         updateQuestionView();
+        window.track02SignalEvent?.("kiirkontroll_start", {
+          event_source: "diagnostic_contact_step"
+        });
       });
 
       nextButton.addEventListener("click", () => {
@@ -622,6 +636,9 @@ const schema = [
           return;
         }
         const href = showMailFallback(latestPayload);
+        window.track02SignalEvent?.("lead_email_click", {
+          event_source: "diagnostic_result_fallback"
+        });
         window.location.href = href;
       });
 

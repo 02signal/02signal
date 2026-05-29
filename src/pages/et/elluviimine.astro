@@ -63,6 +63,14 @@ const schema = [
   description="Lihtsa AI abivahendi ehitus Eesti mikro- ja väikeettevõttele: korduv töö, inimese kontroll ja selge äriline kasu."
   path="/et/elluviimine/"
   schema={schema}
+  analyticsEvent={{
+    name: "service_page_view",
+    params: {
+      service_name: "ai_abivahendi_ehitus",
+      service_title: "AI abivahendi ehitus",
+      page_type: "service"
+    }
+  }}
 >
   <Header lang="et" nav={nav} />
   <main>

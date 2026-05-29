@@ -3,15 +3,21 @@ import "@styles/global.css";
 import type { Lang } from "@data/site";
 import { alternateLinks } from "@data/site";
 
+type AnalyticsEvent = {
+  name: string;
+  params?: Record<string, string | number | boolean | null | undefined>;
+};
+
 type Props = {
   lang: Lang;
   title: string;
   description: string;
   path: string;
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  analyticsEvent?: AnalyticsEvent;
 };
 
-const { lang, title, description, path, schema } = Astro.props;
+const { lang, title, description, path, schema, analyticsEvent } = Astro.props;
 const site = Astro.site ?? "https://02signal.ai";
 const siteUrl = new URL("/", site).toString();
 const canonical = new URL(path, site).toString();
@@ -19,6 +25,7 @@ const alternates = alternateLinks(lang);
 const pageSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
 const phone = "+37258180435";
 const gaMeasurementId = (import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "").trim();
+const analyticsEventJson = JSON.stringify(analyticsEvent ?? null).replace(/</g, "\\u003c");
 const analyticsCopy = {
   et: {
     text: "Kasutame Google Analyticsit, et näha, millised lehed aitavad külastajal järgmise sammuni jõuda.",
@@ -48,9 +55,24 @@ gtag("consent", "default", {
   ad_personalization: "denied"
 });
 gtag("js", new Date());
+window.track02SignalEvent = (eventName, params = {}) => {
+  if (!eventName || localStorage.getItem("analyticsConsent") !== "granted") return;
+  gtag("event", eventName, {
+    event_category: "02signal_funnel",
+    page_path: window.location.pathname,
+    transport_type: "beacon",
+    ...params
+  });
+};
+window.track02SignalPageEvent = () => {
+  const pageEvent = ${analyticsEventJson};
+  if (!pageEvent?.name) return;
+  window.track02SignalEvent(pageEvent.name, pageEvent.params || {});
+};
 if (localStorage.getItem("analyticsConsent") === "granted") {
   gtag("consent", "update", { analytics_storage: "granted" });
   gtag("config", ${JSON.stringify(gaMeasurementId)}, { anonymize_ip: true });
+  window.track02SignalPageEvent();
 }
 `
   : "";
@@ -67,6 +89,7 @@ const analyticsConsentScript = gaMeasurementId
     localStorage.setItem("analyticsConsent", "granted");
     window.gtag("consent", "update", { analytics_storage: "granted" });
     window.gtag("config", ${JSON.stringify(gaMeasurementId)}, { anonymize_ip: true });
+    window.track02SignalPageEvent?.();
     banner.hidden = true;
   });
 
@@ -74,6 +97,37 @@ const analyticsConsentScript = gaMeasurementId
     localStorage.setItem("analyticsConsent", "denied");
     window.gtag("consent", "update", { analytics_storage: "denied" });
     banner.hidden = true;
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const action = target.closest("a, button");
+    if (!(action instanceof HTMLElement)) return;
+
+    const explicitEvent = action.dataset.analyticsEvent;
+    if (explicitEvent) {
+      window.track02SignalEvent?.(explicitEvent, {
+        link_text: action.textContent?.trim().slice(0, 80) || "",
+        event_source: action.dataset.analyticsSource || "explicit"
+      });
+      return;
+    }
+
+    if (!(action instanceof HTMLAnchorElement)) return;
+    const href = action.href;
+    const linkText = action.textContent?.trim().slice(0, 80) || "";
+    if (href.startsWith("tel:")) {
+      window.track02SignalEvent?.("phone_click", {
+        link_text: linkText,
+        link_url: "tel:+37258180435"
+      });
+    } else if (href.startsWith("mailto:")) {
+      window.track02SignalEvent?.("lead_email_click", {
+        link_text: linkText,
+        link_url: href.split("?")[0]
+      });
+    }
   });
 })();
 `

@@ -44,6 +44,16 @@ PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 
 Keep private analytics or tag-manager secrets out of the frontend. Only public measurement IDs belong in `PUBLIC_*` variables.
 
+Tracked GA4 events:
+
+| Event | Meaning | PII |
+|---|---|---|
+| `service_page_view` | Visitor viewed a service or guide page. Includes `service_name`, `service_title`, `page_type`. | No |
+| `kiirkontroll_start` | Visitor submitted contact consent and started the diagnostic questions. | No |
+| `kiirkontroll_completed` | Visitor reached the diagnostic result. Includes score bucket and result level. | No |
+| `lead_email_click` | Visitor clicked or submitted an email lead action. Includes source and selected non-PII options when available. | No |
+| `phone_click` | Visitor clicked the public 02Signal phone number. | No |
+
 ## Content Model
 
 The first page is a practical AI start-plan and small-assistant landing page. Shared copy lives in `src/data/site.ts`; page layout is assembled from reusable Astro components.

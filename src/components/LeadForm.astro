@@ -90,6 +90,14 @@ const { form } = Astro.props;
         `${data.get("message")}`
       ];
       const subject = labels.mailSubject ?? "02Signal request";
+      const analytics = window as Window & {
+        track02SignalEvent?: (eventName: string, params?: Record<string, string>) => void;
+      };
+      analytics.track02SignalEvent?.("lead_email_click", {
+        event_source: "lead_form",
+        selected_need: String(data.get("need") || ""),
+        candidate_count: String(data.get("candidates") || "")
+      });
       window.location.href = `mailto:info@02signal.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
     });
   });
