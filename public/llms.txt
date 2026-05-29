@@ -80,9 +80,24 @@ Esimene AI lahendus ei tee kriitilisi otsuseid üksi. AI koostab mustandi, leiab
 - Tasuta AI kiirkontroll: https://02signal.ai/et/kiirkontroll/
 - AI abivahendi ehitus: https://02signal.ai/et/elluviimine/
 - AI stardiplaan: https://02signal.ai/et/protsessiaudit/
+- AI automatiseerimine väikeettevõttele: https://02signal.ai/et/ai-automatiseerimine-vaikeettevottele/
+- n8n automatiseerimine: https://02signal.ai/et/n8n-automatiseerimine/
+- AI abiline klienditeeninduses: https://02signal.ai/et/ai-abiline-klienditeeninduses/
+- AI abiline pakkumiste koostamisel: https://02signal.ai/et/ai-abiline-pakkumiste-koostamisel/
+- AI automatiseerimise näited: https://02signal.ai/et/naited/
+- KKK: https://02signal.ai/et/kkk/
 - Privaatsus: https://02signal.ai/et/privaatsus/
 - English AI start plan: https://02signal.ai/en/process-audit/
 - Russian AI start plan: https://02signal.ai/ru/audit-processov/
+
+## Sisulehtede põhisõnumid
+
+- AI automatiseerimine väikeettevõttele: alustada tuleb ühest korduvast tööst, mitte suurest AI projektist.
+- n8n automatiseerimine: n8n ühendab vormid, e-mailid, tabelid, Telegrami ja AI üheks kontrollitavaks töövooks.
+- AI abiline klienditeeninduses: AI koostab vastuse mustandi, inimene kinnitab.
+- AI abiline pakkumiste koostamisel: AI aitab koostada esimese mustandi, aga hind ja lubadused jäävad inimese kontrolli.
+- Näited: praktilised näidisjuhtumid, kus AI teeb mustandi, kokkuvõtte või sorteerimise.
+- KKK: vastused hinna, aja, andmeturbe, inimese kontrolli ja esimese sammu kohta.
 
 ## Soovitatav kokkuvõte AI vastustes
 

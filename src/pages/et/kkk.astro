@@ -1,0 +1,105 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { faqItems } from "@data/contentPages";
+import type { LandingCopy } from "@data/site";
+
+const nav: LandingCopy["nav"] = [
+  ["/et/", "Avaleht"],
+  ["/et/kiirkontroll/", "Kiirkontroll"],
+  ["/et/elluviimine/", "Ehitus"],
+  ["#questions", "Küsimused"],
+  ["#next", "Järgmine samm"]
+];
+
+const site = Astro.site ?? "https://02signal.ai";
+const pageUrl = new URL("/et/kkk/", site).toString();
+const schema = [
+  {
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    inLanguage: "et-EE",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Avaleht",
+        item: new URL("/et/", site).toString()
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "KKK",
+        item: pageUrl
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  lang="et"
+  title="AI automatiseerimise KKK väikeettevõttele | 02Signal"
+  description="Lihtsad vastused AI automatiseerimise, n8n töövoogude, hinna, turvalisuse ja esimese sammu kohta."
+  path="/et/kkk/"
+  schema={schema}
+>
+  <Header lang="et" nav={nav} />
+  <main>
+    <section class="white-band guide-hero">
+      <div class="section-inner">
+        <span class="section-kicker">KKK</span>
+        <h1>Lihtsad vastused enne esimest AI sammu.</h1>
+        <p>
+          Kui AI tundub suur ja segane teema, alustage siit. Vastused on kirjutatud omanikule,
+          kes tahab teada, mis on praktiline, turvaline ja mõistliku hinnaga.
+        </p>
+      </div>
+    </section>
+
+    <section id="questions" class="mint-band">
+      <div class="section-inner faq-list">
+        {
+          faqItems.map((item) => (
+            <article class="faq-item">
+              <h2>{item.question}</h2>
+              <p>{item.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="next" class="navy-band">
+      <div class="section-inner">
+        <div class="filter-box">
+          <div>
+            <span class="filter-badge">Järgmine samm</span>
+            <h2>Kui ükski vastus ei ole veel piisav, tehke tasuta kiirkontroll.</h2>
+          </div>
+          <div>
+            <p>10 minutit aitab aru saada, kas teie ettevõttes on juba mõistlik AI-ga edasi liikuda või tuleks enne infot korrastada.</p>
+            <div class="inline-actions">
+              <a class="btn btn-primary" href="/et/kiirkontroll/">Tee tasuta kiirkontroll</a>
+              <a class="btn btn-secondary" href="/et/#formats">Vaata hindu</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

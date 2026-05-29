@@ -1,0 +1,144 @@
+---
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { LandingCopy } from "@data/site";
+import type { GuidePage as GuidePageData } from "@data/contentPages";
+
+type Props = {
+  page: GuidePageData;
+};
+
+const { page } = Astro.props;
+const nav: LandingCopy["nav"] = [
+  ["/et/", "Avaleht"],
+  ["/et/kiirkontroll/", "Kiirkontroll"],
+  ["/et/elluviimine/", "Ehitus"],
+  ["/et/kkk/", "KKK"],
+  ["#next", "Järgmine samm"]
+];
+
+const site = Astro.site ?? "https://02signal.ai";
+const pageUrl = new URL(page.path, site).toString();
+const schema = [
+  {
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
+    headline: page.title,
+    description: page.description,
+    inLanguage: "et-EE",
+    mainEntityOfPage: pageUrl,
+    author: {
+      "@id": new URL("/#organization", site).toString()
+    },
+    publisher: {
+      "@id": new URL("/#organization", site).toString()
+    }
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Avaleht",
+        item: new URL("/et/", site).toString()
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.eyebrow,
+        item: pageUrl
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout lang="et" title={page.metaTitle} description={page.description} path={page.path} schema={schema}>
+  <Header lang="et" nav={nav} />
+  <main>
+    <section class="white-band guide-hero">
+      <div class="section-inner">
+        <span class="section-kicker">{page.eyebrow}</span>
+        <h1>{page.title}</h1>
+        <p>{page.lead}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={page.nextStep.primaryHref}>{page.nextStep.primary}</a>
+          {page.nextStep.secondary && <a class="btn btn-light" href={page.nextStep.secondaryHref}>{page.nextStep.secondary}</a>}
+        </div>
+      </div>
+    </section>
+
+    <section class="mint-band">
+      <div class="section-inner guide-layout">
+        <article class="guide-main">
+          <section class="guide-section">
+            <h2>Lühidalt</h2>
+            <ul class="check-list">
+              {page.shortAnswer.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="guide-section">
+            <h2>Millal see sobib?</h2>
+            <ul class="plain-list">
+              {page.goodFor.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="guide-section">
+            <h2>Millal mitte alustada?</h2>
+            <ul class="plain-list">
+              {page.notFor.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="guide-section">
+            <h2>Kuidas väike algus käib?</h2>
+            <div class="guide-steps">
+              {
+                page.steps.map((step, index) => (
+                  <div class="guide-step">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.text}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        </article>
+
+        <aside class="guide-side">
+          <h2>Näited</h2>
+          <ul class="check-list">
+            {page.examples.map((item) => <li>{item}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="next" class="navy-band">
+      <div class="section-inner">
+        <div class="filter-box">
+          <div>
+            <span class="filter-badge">Järgmine samm</span>
+            <h2>{page.nextStep.title}</h2>
+          </div>
+          <div>
+            <p>{page.nextStep.text}</p>
+            <div class="inline-actions">
+              <a class="btn btn-primary" href={page.nextStep.primaryHref}>{page.nextStep.primary}</a>
+              {page.nextStep.secondary && <a class="btn btn-secondary" href={page.nextStep.secondaryHref}>{page.nextStep.secondary}</a>}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
