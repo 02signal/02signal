@@ -17,6 +17,67 @@ const siteUrl = new URL("/", site).toString();
 const canonical = new URL(path, site).toString();
 const alternates = alternateLinks(lang);
 const pageSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const phone = "+37258180435";
+const gaMeasurementId = (import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "").trim();
+const analyticsCopy = {
+  et: {
+    text: "Kasutame Google Analyticsit, et näha, millised lehed aitavad külastajal järgmise sammuni jõuda.",
+    accept: "Luba mõõtmine",
+    decline: "Ei luba"
+  },
+  en: {
+    text: "We use Google Analytics to see which pages help visitors reach the next step.",
+    accept: "Allow analytics",
+    decline: "Decline"
+  },
+  ru: {
+    text: "Мы используем Google Analytics, чтобы понимать, какие страницы помогают посетителю сделать следующий шаг.",
+    accept: "Разрешить",
+    decline: "Не разрешать"
+  }
+}[lang];
+const analyticsInitScript = gaMeasurementId
+  ? `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag("consent", "default", {
+  analytics_storage: "denied",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied"
+});
+gtag("js", new Date());
+if (localStorage.getItem("analyticsConsent") === "granted") {
+  gtag("consent", "update", { analytics_storage: "granted" });
+  gtag("config", ${JSON.stringify(gaMeasurementId)}, { anonymize_ip: true });
+}
+`
+  : "";
+const analyticsConsentScript = gaMeasurementId
+  ? `
+(() => {
+  const banner = document.querySelector("[data-analytics-consent]");
+  if (!banner || !window.gtag) return;
+
+  const storedConsent = localStorage.getItem("analyticsConsent");
+  if (!storedConsent) banner.hidden = false;
+
+  banner.querySelector("[data-analytics-accept]")?.addEventListener("click", () => {
+    localStorage.setItem("analyticsConsent", "granted");
+    window.gtag("consent", "update", { analytics_storage: "granted" });
+    window.gtag("config", ${JSON.stringify(gaMeasurementId)}, { anonymize_ip: true });
+    banner.hidden = true;
+  });
+
+  banner.querySelector("[data-analytics-decline]")?.addEventListener("click", () => {
+    localStorage.setItem("analyticsConsent", "denied");
+    window.gtag("consent", "update", { analytics_storage: "denied" });
+    banner.hidden = true;
+  });
+})();
+`
+  : "";
 const schemaGraph = {
   "@context": "https://schema.org",
   "@graph": [
@@ -27,9 +88,20 @@ const schemaGraph = {
       legalName: "Ettevõtluskeskus OÜ",
       url: siteUrl,
       email: "info@02signal.ai",
+      telephone: phone,
       description:
         "02Signal aitab Eesti mikro- ja väikeettevõtetel valida ja ehitada esimese praktilise AI abilise.",
       areaServed: "EE",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: phone,
+          email: "info@02signal.ai",
+          contactType: "customer service",
+          areaServed: "EE",
+          availableLanguage: ["et", "en", "ru"]
+        }
+      ],
       knowsAbout: [
         "AI automatiseerimine",
         "AI abiline",
@@ -64,15 +136,30 @@ const schemaJson = JSON.stringify(schemaGraph).replace(/</g, "\\u003c");
     <link rel="canonical" href={canonical} />
     {alternates.map((item) => <link rel="alternate" hreflang={item.lang} href={new URL(item.href, site).toString()} />)}
     <link rel="alternate" hreflang="x-default" href={new URL("/et/", site).toString()} />
+    <meta name="robots" content="index,follow" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL("/images/hero-process-audit.png", site).toString()} />
     <meta name="twitter:card" content="summary_large_image" />
+    {gaMeasurementId && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaMeasurementId)}`}></script>}
+    {gaMeasurementId && <script is:inline set:html={analyticsInitScript}></script>}
     <script is:inline type="application/ld+json" set:html={schemaJson}></script>
   </head>
   <body>
     <slot />
+    {
+      gaMeasurementId && (
+        <div class="consent-banner" data-analytics-consent hidden>
+          <p>{analyticsCopy.text}</p>
+          <div>
+            <button class="btn btn-primary" type="button" data-analytics-accept>{analyticsCopy.accept}</button>
+            <button class="btn btn-light" type="button" data-analytics-decline>{analyticsCopy.decline}</button>
+          </div>
+        </div>
+      )
+    }
+    {gaMeasurementId && <script is:inline set:html={analyticsConsentScript}></script>}
   </body>
 </html>

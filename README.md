@@ -32,6 +32,18 @@ Recommended Vercel settings:
 - Build command: `npm run build`
 - Output directory: `dist`
 
+## Analytics
+
+Google Analytics 4 is loaded only when `PUBLIC_GA_MEASUREMENT_ID` is set. The site shows a small analytics consent banner and stores the choice in `localStorage`.
+
+Vercel environment variable:
+
+```bash
+PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+Keep private analytics or tag-manager secrets out of the frontend. Only public measurement IDs belong in `PUBLIC_*` variables.
+
 ## Content Model
 
 The first page is a practical AI start-plan and small-assistant landing page. Shared copy lives in `src/data/site.ts`; page layout is assembled from reusable Astro components.
