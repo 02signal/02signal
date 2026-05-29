@@ -34,11 +34,11 @@ Recommended Vercel settings:
 
 ## Content Model
 
-The first page is an AI pilot process-audit landing page. Shared copy lives in `src/data/site.ts`; page layout is assembled from reusable Astro components.
+The first page is a practical AI start-plan and small-assistant landing page. Shared copy lives in `src/data/site.ts`; page layout is assembled from reusable Astro components.
 
 ## Diagnostic Form Data Collection
 
-The Estonian self-diagnostic page is available at `/et/kiirkontroll/`.
+The Estonian AI quick-check page is available at `/et/kiirkontroll/`.
 
 The page first collects contact details and consent. When the visitor clicks `Alusta`, the page can send a `started` event to a webhook. When the visitor completes the diagnostic, it sends a `completed` event with the score and answers. This lets us keep both unfinished leads and completed reports.
 

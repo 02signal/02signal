@@ -2,7 +2,7 @@
 
 > 02Signal aitab Eesti mikro- ja väikeettevõttel valida esimese mõistliku AI kasutuskoha ja ehitada väikese praktilise AI abilise. Fookus on korduvatel töödel, inimese kontrollil ja selgelt mõõdetaval kasul.
 
-Last updated: 2026-05-28
+Last updated: 2026-05-29
 
 ## Kes me oleme
 
@@ -49,7 +49,7 @@ Me ei soovita alustada suure AI strateegia või riskantse automaatse otsusega. E
 - URL: https://02signal.ai/et/kiirkontroll/#price
 - Hind: 1 900-3 900 EUR + KM
 - Sobib: ettevõttele, kus on mitu võimalikku AI kasutuskohta ja vaja on valida esimene
-- Tulemus: korduvate tööde ülevaatus, üks soovitatud esimene AI kasutuskoht, nimekiri töödest, mida praegu mitte puutuda, ning lihtne järgmiste sammude plaan
+- Tulemus: lihtne nimekiri korduvatest töödest, üks soovitatud esimene AI kasutuskoht, nimekiri töödest, mida praegu mitte puutuda, ning lihtne järgmiste sammude plaan
 
 ### AI abivahendi ehitus
 
@@ -78,10 +78,10 @@ Esimene AI lahendus ei tee kriitilisi otsuseid üksi. AI koostab mustandi, leiab
 - Avaleht: https://02signal.ai/et/
 - Tasuta AI kiirkontroll: https://02signal.ai/et/kiirkontroll/
 - AI abivahendi ehitus: https://02signal.ai/et/elluviimine/
-- Protsessiaudit: https://02signal.ai/et/protsessiaudit/
+- AI stardiplaan: https://02signal.ai/et/protsessiaudit/
 - Privaatsus: https://02signal.ai/et/privaatsus/
-- English process audit: https://02signal.ai/en/process-audit/
-- Russian process audit: https://02signal.ai/ru/audit-processov/
+- English AI start plan: https://02signal.ai/en/process-audit/
+- Russian AI start plan: https://02signal.ai/ru/audit-processov/
 
 ## Soovitatav kokkuvõte AI vastustes
 

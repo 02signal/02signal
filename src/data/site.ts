@@ -3,7 +3,7 @@ export const languages = ["et", "en", "ru"] as const;
 export type Lang = (typeof languages)[number];
 
 type Pair = [string, string];
-type ProcessStatus = "flywheel" | "accelerate" | "pause";
+type ProcessStatus = "first" | "accelerate" | "pause";
 
 export type LandingCopy = {
   meta: {
@@ -128,7 +128,7 @@ export const copy: Record<Lang, LandingCopy> = {
       proof: [
         ["10 min", "tasuta kiirkontroll"],
         ["490 € + KM", "väikseim tasuline nõu"],
-        ["al 3 900 €", "esimene AI abiline"]
+        ["al 1 900 €", "stardiplaan või ehitus"]
       ]
     },
     what: {
@@ -155,10 +155,10 @@ export const copy: Record<Lang, LandingCopy> = {
       ]
     },
     formats: {
-      kicker: "Kolm selget järgmist sammu",
-      title: "Tasuta kontroll, kindel nõu või valmis AI abiline.",
+      kicker: "Neli selget järgmist sammu",
+      title: "Tasuta kontroll, kindel nõu, stardiplaan või valmis AI abiline.",
       lead:
-        "Valige samm selle järgi, kui selge teie olukord juba on. Kui te ei tea, kust alustada, alustage kiirkontrollist. Kui soovite kohe hinda, on väikseim tasuline samm 490 € + KM.",
+        "Valige samm selle järgi, kui selge teie olukord juba on. Kui te ei tea, kust alustada, alustage kiirkontrollist. Väikseim tasuline samm on 490 € + KM.",
       cards: [
         {
           label: "Kiire algus",
@@ -181,6 +181,19 @@ export const copy: Record<Lang, LandingCopy> = {
           ],
           price: "lihtsaim tasuline samm 490 € + KM",
           cta: "Räägime üle"
+        },
+        {
+          label: "Kui kohti on mitu",
+          title: "AI stardiplaan",
+          text: "Sobib, kui ettevõttes on mitu võimalikku AI kasutuskohta ja tahate enne ehitamist valida ühe mõistliku alguse.",
+          items: [
+            "lihtne nimekiri korduvatest töödest",
+            "üks soovitatud esimene AI kasutuskoht",
+            "mida praegu mitte puutuda",
+            "lihtne plaan: mida teha, mida vältida ja mis võiks maksta"
+          ],
+          price: "1 900-3 900 € + KM",
+          cta: "Küsi stardiplaani"
         },
         {
           label: "Kui esimene töö on selge",
@@ -217,8 +230,8 @@ export const copy: Record<Lang, LandingCopy> = {
         "Hea esimene AI töö on selline, kus tulemust saab kontrollida: kas vastus oli õige, kas töö sai kiiremini tehtud, kas klient sai parema vastuse, kas vigu jäi vähemaks. Kui seda ei saa mõõta, ei tasu sealt alustada."
     },
     audit: {
-      kicker: "Kuidas ülevaatus käib",
-      title: "1-2 nädalaga teeme selgeks, kust on mõistlik alustada.",
+      kicker: "Kuidas stardiplaan käib",
+      title: "1-2 nädalaga valime esimese AI kasutuskoha.",
       lead:
         "Me ei tee pikka strateegiadokumenti. Räägime võtmeinimestega, vaatame korduvaid töid ja paneme lihtsas keeles kirja, mida teha, mida oodata ja mida praegu vältida.",
       steps: [
@@ -246,19 +259,19 @@ export const copy: Record<Lang, LandingCopy> = {
       kicker: "Näidislahendus",
       title: "Näide: sama ettevõtte sees ei sobi kõik tööd esimeseks AI sammuks.",
       lead:
-        "Allpool on lihtne näide. Päris ülevaatuses oleks siin teie ettevõtte tööd ja iga töö juures lühike põhjendus.",
+        "Allpool on lihtne näide. Päris stardiplaanis oleks siin teie ettevõtte tööd ja iga töö juures lühike põhjendus.",
       statuses: {
-        flywheel: "sobib esimeseks",
+        first: "sobib esimeseks",
         accelerate: "lihtne võit",
         pause: "praegu mitte"
       },
       processes: [
-        { name: "Kliendiküsimustele vastamine", status: "flywheel" },
-        { name: "Kaubapuuduse märkamine", status: "flywheel" },
+        { name: "Kliendiküsimustele vastamine", status: "first" },
+        { name: "Kaubapuuduse märkamine", status: "first" },
         { name: "Kampaania teksti mustandid", status: "accelerate" },
         { name: "Lepingute lõplik kinnitamine", status: "pause" },
         { name: "Tootekirjelduste parandamine", status: "accelerate" },
-        { name: "Probleemsete tellimuste sorteerimine", status: "flywheel" },
+        { name: "Probleemsete tellimuste sorteerimine", status: "first" },
         { name: "Aasta finantsprognoos", status: "pause" },
         { name: "Töögraafikute ettevalmistus", status: "accelerate" }
       ],
@@ -271,7 +284,7 @@ export const copy: Record<Lang, LandingCopy> = {
     scope: {
       kicker: "Mida saate",
       title: "Tulemuseks on praktiline otsus, mitte paks raport.",
-      includedTitle: "Ülevaatus annab",
+      includedTitle: "Stardiplaan annab",
       notIncludedTitle: "Pärast saab eraldi ehitada",
       included: ["lihtne nimekiri töödest, mida tasub vaadata", "soovitus, mida teha esimesena", "selgitus, miks just see töö", "järgmiste sammude plaan"],
       notIncluded: ["täielik tehniline lahendus", "uue süsteemi valmis ehitamine", "andmeturbe reeglite kinnitamine", "pikk koolitusprogramm töötajatele"]
@@ -279,7 +292,7 @@ export const copy: Record<Lang, LandingCopy> = {
     contact: {
       kicker: "Järgmine samm",
       title: "Räägime 30 minutiga läbi, kas see on teile mõistlik.",
-      lead: "Kirjeldage paari sõnaga, milline töö praegu aega võtab. Kui põhjalikku ülevaatust ei ole vaja, ütleme seda ausalt.",
+      lead: "Kirjeldage paari sõnaga, milline töö praegu aega võtab. Kui põhjalikku plaani ei ole vaja, ütleme seda ausalt.",
       emailCta: "Kirjuta info@02signal.ai"
     },
     form: {
@@ -294,132 +307,154 @@ export const copy: Record<Lang, LandingCopy> = {
       consent: "Nõustun, et 02Signal kasutab neid andmeid minuga ühenduse võtmiseks.",
       submit: "Saada päring",
       note: "Vorm avab e-kirja teie meiliprogrammis. Vastame ühe tööpäeva jooksul.",
-      sizes: ["50-100", "100-500", "500+", "Alla 50", "Ei tea"],
-      needs: ["30-min kõne", "Tasuta kiirkontroll", "Tööde ülevaatus", "Tahan lihtsalt nõu küsida"],
+      sizes: ["1-5 inimest", "6-15 inimest", "16-50 inimest", "50+ inimest", "Ei tea"],
+      needs: ["Tasuta kiirkontroll", "AI alguse nõu", "AI stardiplaan", "AI abivahendi ehitus", "Tahan lihtsalt nõu küsida"],
       candidateOptions: ["1", "2-3", "4-7", "Rohkem", "Ei tea"],
       mailSubject: "02Signal AI alguse päring"
     }
   },
   en: {
     meta: {
-      title: "02Signal | AI pilot process audit",
+      title: "02Signal | Practical AI automation for small business",
       description:
-        "02Signal helps teams choose the first AI pilot process, design measurable automation, and prepare a leadership decision.",
+        "02Signal helps small business owners choose the first practical AI use case, check readiness, and build a small AI assistant with human control.",
       path: "/en/"
     },
     nav: [
       ["#what", "What we do"],
-      ["#formats", "Formats"],
-      ["#audit", "Audit"],
+      ["#formats", "Prices"],
+      ["/et/kiirkontroll/", "Quick check"],
+      ["/et/elluviimine/", "Build"],
+      ["#audit", "How it works"],
       ["#example", "Example"],
       ["#contact", "Contact"]
     ],
     hero: {
-      eyebrow: "AI pilot process audit",
-      title: "Choose the first AI pilot where the win can be measured.",
+      eyebrow: "First sensible AI step",
+      title: "Choose the task where AI can make real work easier.",
       lead:
-        "02Signal helps leaders find the process with a feedback loop, business impact, and a ready team. Only then do we build n8n, RAG, or a bot.",
-      primary: "Book a 30-min call",
-      secondary: "See formats",
+        "You do not need to start with a large AI programme. We review repeated work, choose a small controlled first step, and only then build the tool.",
+      primary: "Start free quick check",
+      primaryHref: "/et/kiirkontroll/",
+      secondary: "See prices",
+      secondaryHref: "#formats",
       proof: [
-        ["10 min", "free self-diagnostic"],
-        ["1-2 weeks", "process audit for leadership"],
-        ["15-20 processes", "mapped and prioritized"]
+        ["10 min", "free quick check"],
+        ["490 € + VAT", "smallest paid advice"],
+        ["from 1 900 €", "start plan or build"]
       ]
     },
     what: {
       kicker: "What 02Signal does",
-      title: "We do not sell an “AI project”. We help you choose the right first process.",
+      title: "We help you see where AI can create practical value.",
       lead:
-        "Starting with the wrong process is the most expensive early AI mistake: the pilot drags on, ROI does not show up, and trust disappears. The right process starts a small measurable flywheel.",
+        "The biggest mistake is starting where the result cannot be seen. Money is spent, people get tired, and trust in AI drops. We help choose a small, practical, measurable beginning.",
       cards: [
-        { number: "1", title: "Find the right process", text: "We map repeated decisions, data sources, the feedback loop, and the cost of error." },
-        { number: "2", title: "Design the pilot", text: "We define knowledge, autonomy level, decision log, quality checks, and metrics." },
-        { number: "3", title: "Build only after selection", text: "n8n, Telegram, Google Sheets, or RAG enter the picture once the process logic is clear." }
+        { number: "1", title: "Find time thieves", text: "We look for repeated work that takes time every week." },
+        { number: "2", title: "Choose a safe start", text: "We prefer tasks where mistakes are not too expensive and a person can check the result." },
+        { number: "3", title: "Build only after that", text: "Tools come later. First we must know exactly what should become easier." }
       ]
     },
     formats: {
-      kicker: "Two help formats",
-      title: "Start light or order an audit for a leadership decision.",
+      kicker: "Four clear next steps",
+      title: "Free check, fixed advice, start plan, or a small AI assistant.",
       lead:
-        "You can begin with a 10-minute self-diagnostic. If the company has several AI ideas and needs an executive decision, use the process audit.",
+        "Choose the step based on how clear your situation already is. If you do not know where to start, start with the free quick check. The smallest paid step is 490 € + VAT.",
       cards: [
         {
           label: "Light entry",
-          title: "AI maturity self-diagnostic",
-          text: "Use it when you want a quick read on whether the company is ready for an AI pilot.",
-          items: ["20 questions across five dimensions", "PDF summary by email", "3-5 next steps", "Gap map"],
+          title: "Free AI quick check",
+          text: "Use it when you want to understand whether it makes sense to start with AI now.",
+          items: ["20 simple questions", "result on screen", "3-5 suggested next steps", "clear view of gaps"],
           price: "10 min · free",
-          cta: "Start self-diagnostic"
+          cta: "Start quick check",
+          href: "/et/kiirkontroll/"
         },
         {
-          label: "Leadership decision",
-          title: "Process audit",
-          text: "Use it when the company has 3-7 AI candidate processes and must choose the first one or two pilots.",
-          items: ["15-20 process map", "AI flywheel spec for 1-2 finalists", "6-12 month roadmap", "60-min defense with top team"],
-          price: "1-2 weeks · price after scoping",
-          cta: "Order audit"
+          label: "Smallest paid step",
+          title: "AI start advice",
+          text: "Use it when the owner wants a calm answer: can AI help here or not?",
+          items: ["90-minute meeting", "2-3 time thieves reviewed", "one recommended first task or honest no", "next price range"],
+          price: "490 € + VAT",
+          cta: "Talk it through"
+        },
+        {
+          label: "Several possible places",
+          title: "AI start plan",
+          text: "Use it when there are several possible AI use cases and you want to choose one sensible start before building.",
+          items: ["review of repeated tasks", "one recommended first AI use case", "what not to touch now", "simple plan and budget range"],
+          price: "1 900-3 900 € + VAT",
+          cta: "Ask for start plan"
+        },
+        {
+          label: "First task is clear",
+          title: "Small AI assistant build",
+          text: "Use it when one repeated task is clear, a person can check the result, and the benefit can be measured.",
+          items: ["small workflow or AI draft", "human check before use", "testing on real examples", "simple handover"],
+          price: "from 3 900 € + VAT",
+          cta: "See build",
+          href: "/et/elluviimine/"
         }
       ]
     },
     fit: {
-      kicker: "When audit fits",
-      title: "The audit answers one question: which process should we start with?",
+      kicker: "When this fits",
+      title: "The core question is simple: which task should AI make easier first?",
       items: [
-        ["The company has 3-7 AI ideas or processes, but no priority.", "Audit"],
-        ["Leadership needs a clear budget rationale and Go/No-Go criteria.", "Audit"],
-        ["Three leaders have three different AI ideas and no shared decision frame.", "Audit"],
-        ["The process is already chosen and the team wants to build a prototype.", "Workshop"],
-        ["The process is chosen, but there is no internal build team.", "Implementation"],
-        ["The company is below 50-100 people and processes still live mostly in the owner’s head.", "Self-diagnostic or call"]
+        ["You have several AI ideas but do not know which gives the quickest useful result.", "Fits"],
+        ["People spend time every week copying, answering, sorting, or preparing the same things.", "Fits"],
+        ["You want to know whether data and work routines are ready before spending money.", "Fits"],
+        ["You already know exactly what to build and only need technical delivery.", "Build help"],
+        ["You want AI training for employees, not a change in repeated work.", "Training"],
+        ["The company is very small and every decision is still only in the owner’s head.", "Start with a call"]
       ]
     },
     filter: {
-      badge: "Main filter",
-      title: "Without a feedback loop, the AI flywheel does not start.",
+      badge: "Most important question",
+      title: "Can we later see whether AI helped or not?",
       copy:
-        "The first pilot must be a process where you can tell whether the AI decision was right. If no such process exists, the audit still creates value: you avoid spending budget on a pilot that cannot learn."
+        "A good first AI task is one where the result can be checked: was the answer correct, did the work get faster, did the customer get a better reply, did errors decrease. If this cannot be checked, do not start there."
     },
     audit: {
-      kicker: "How the audit works",
-      title: "1-2 weeks based on real processes, interviews, and data.",
-      lead: "This is not idea collection. We test processes against four signs: repetition, feedback loop, cost of error, and team readiness.",
+      kicker: "How the start plan works",
+      title: "In 1-2 weeks we choose the first AI use case.",
+      lead: "We do not write a long strategy document. We talk to key people, review repeated work, and write down in plain language what to do, what to expect, and what to avoid for now.",
       steps: [
-        { tag: "Week 1", title: "Process map and labeling", text: "We collect 15-20 processes. Each receives a status: AI flywheel, AI acceleration without redesign, or do not touch." },
-        { tag: "Week 2", title: "Flywheel design for finalists", text: "We define knowledge, autonomy level, decision log, quality control, and metrics for 1-2 key processes." },
-        { tag: "Final", title: "60-min decision session", text: "We review the results with CEO/COO and process owners, then agree on pilot, budget range, and Go/No-Go points." }
+        { tag: "Step 1", title: "List repeated tasks", text: "We collect 15-20 tasks that take time: customer replies, reports, offers, orders, schedules, copying data." },
+        { tag: "Step 2", title: "Choose best starting points", text: "For each task we look at frequency, time spent, cost of error, and whether the result can be checked." },
+        { tag: "Step 3", title: "Give a clear recommendation", text: "At the end there is one discussion: what to do first, what to do later, and what to avoid now." }
       ]
     },
     example: {
       kicker: "Example solution",
-      title: "UrbanStyle: a process map that separates an AI flywheel from simple automation.",
+      title: "Example: not every task is a good first AI step.",
       lead:
-        "This is a placeholder example from the 02Signal simulation. In a real audit, this would contain your company’s 15-20 processes and a short rationale for each status.",
-      statuses: { flywheel: "AI flywheel", accelerate: "AI acceleration", pause: "do not touch" },
+        "This is a simple example. In a real start plan, these would be your company’s tasks with a short reason next to each one.",
+      statuses: { first: "good first step", accelerate: "quick win", pause: "not now" },
       processes: [
-        { name: "Customer inquiry replies", status: "flywheel" },
-        { name: "Inventory transfer decisions", status: "flywheel" },
+        { name: "Customer inquiry replies", status: "first" },
+        { name: "Inventory transfer decisions", status: "first" },
         { name: "Campaign content drafts", status: "accelerate" },
         { name: "Final contract approval", status: "pause" },
         { name: "Product description creation", status: "accelerate" },
-        { name: "Order exception handling", status: "flywheel" },
+        { name: "Order exception handling", status: "first" },
         { name: "Financial forecasting", status: "pause" },
         { name: "Store staff scheduling", status: "accelerate" }
       ],
-      legend: ["AI flywheel - start in the next quarter", "AI acceleration - use an existing workflow", "do not touch - risk, data, or feedback loop does not fit"]
+      legend: ["good first step - value is visible and the result can be checked", "quick win - can be done with a small tool", "not now - too risky, unclear, or data is not ready"]
     },
     scope: {
-      kicker: "What is outside the audit",
-      title: "The audit is selection and pilot design, not full implementation.",
-      includedTitle: "The audit gives a decision base",
-      notIncludedTitle: "Implementation comes next",
-      included: ["prioritized process map", "pilot work specification", "metrics and quality control", "leadership decision session"],
-      notIncluded: ["full n8n production workflow", "approval of data security policies", "autotest pipeline", "training a champion network"]
+      kicker: "What you get",
+      title: "The result is a practical decision, not a thick report.",
+      includedTitle: "The start plan gives",
+      notIncludedTitle: "Build can come next",
+      included: ["simple list of tasks worth looking at", "recommendation what to do first", "reason why this task", "next step plan"],
+      notIncluded: ["complete technical solution", "building a new system", "approving data-security policies", "long employee training programme"]
     },
     contact: {
       kicker: "Next step",
-      title: "Let’s review 2-3 processes and choose the right format.",
-      lead: "We reply within one business day. If the audit is not the right move now, we say it directly and suggest a lighter format.",
+      title: "In 30 minutes we can see which step is sensible.",
+      lead: "Describe briefly what work takes time now. If a start plan or build is not needed, we will say that directly.",
       emailCta: "Email info@02signal.ai"
     },
     form: {
@@ -428,138 +463,160 @@ export const copy: Record<Lang, LandingCopy> = {
       name: "Name *",
       role: "Role *",
       email: "Email *",
-      need: "What do you need? *",
-      candidates: "How many AI candidate processes do you see? *",
-      message: "Describe in 1-2 sentences where AI could help *",
+      need: "What are you interested in? *",
+      candidates: "How many repeated tasks could AI make easier? *",
+      message: "Describe in 1-2 sentences what work takes time now *",
       consent: "I agree that 02Signal may use this data to contact me.",
       submit: "Send request",
-      note: "The form opens an email in your mail app. A real n8n webhook can be connected next.",
-      sizes: ["50-100", "100-500", "500+", "Below 50", "Not sure"],
-      needs: ["Process audit", "30-min call", "Self-diagnostic", "Something else"],
+      note: "The form opens an email in your mail app. We reply within one business day.",
+      sizes: ["1-5 people", "6-15 people", "16-50 people", "50+ people", "Not sure"],
+      needs: ["Free quick check", "AI start advice", "AI start plan", "Small AI assistant build", "Just want to ask"],
       candidateOptions: ["1", "2-3", "4-7", "More", "Not sure"],
-      mailSubject: "02Signal AI pilot request"
+      mailSubject: "02Signal AI first step request"
     }
   },
   ru: {
     meta: {
-      title: "02Signal | Аудит процесса для AI-пилота",
+      title: "02Signal | Практичная AI-автоматизация для малого бизнеса",
       description:
-        "02Signal помогает выбрать первый процесс для AI-пилота, спроектировать измеримую автоматизацию и подготовить решение для руководства.",
+        "02Signal помогает владельцу малого бизнеса выбрать первый практичный сценарий AI, проверить готовность и построить небольшого AI-помощника с контролем человека.",
       path: "/ru/"
     },
     nav: [
       ["#what", "Что делаем"],
-      ["#formats", "Форматы"],
-      ["#audit", "Аудит"],
+      ["#formats", "Цены"],
+      ["/et/kiirkontroll/", "Проверка"],
+      ["/et/elluviimine/", "Внедрение"],
+      ["#audit", "Как идет"],
       ["#example", "Пример"],
       ["#contact", "Контакт"]
     ],
     hero: {
-      eyebrow: "Аудит процесса для AI-пилота",
-      title: "Выберите первый AI-пилот там, где результат можно измерить.",
+      eyebrow: "Первый разумный шаг с AI",
+      title: "Помогаем выбрать работу, которую AI действительно может упростить.",
       lead:
-        "02Signal помогает руководителям найти процесс с петлей обратной связи, бизнес-эффектом и готовой командой. Только после этого строим n8n, RAG или бота.",
-      primary: "Назначить 30-мин звонок",
-      secondary: "Посмотреть форматы",
+        "Не нужно начинать с большого и дорогого AI-проекта. Мы смотрим повторяющиеся работы, выбираем маленький безопасный первый шаг и только потом строим инструмент.",
+      primary: "Пройти бесплатную проверку",
+      primaryHref: "/et/kiirkontroll/",
+      secondary: "Посмотреть цены",
+      secondaryHref: "#formats",
       proof: [
-        ["10 минут", "бесплатная самодиагностика"],
-        ["1-2 недели", "аудит процессов для руководства"],
-        ["15-20 процессов", "карта и приоритеты"]
+        ["10 минут", "бесплатная проверка"],
+        ["490 € + KM", "самый малый платный шаг"],
+        ["от 1 900 €", "стартовый план или внедрение"]
       ]
     },
     what: {
       kicker: "Что делает 02Signal",
-      title: "Мы не продаем “AI-проект”. Мы помогаем выбрать правильный первый процесс.",
+      title: "Мы помогаем понять, где AI даст практическую пользу.",
       lead:
-        "Старт на неподходящем процессе - дорогая ошибка ранней AI-трансформации: пилот живет долго, окупаемости нет, доверие к идее теряется. Правильный процесс запускает небольшой измеримый маховик.",
+        "Самая дорогая ошибка — начать там, где результат не видно. Деньги потрачены, люди устали, доверие к AI падает. Мы помогаем выбрать маленькое, понятное и измеримое начало.",
       cards: [
-        { number: "1", title: "Находим подходящий процесс", text: "Смотрим повторяемые решения, источники данных, петлю обратной связи и цену ошибки." },
-        { number: "2", title: "Проектируем пилот", text: "Определяем базу знаний, уровень автономии, лог решений, проверку качества и метрики." },
-        { number: "3", title: "Строим только после выбора", text: "n8n, Telegram, Google Sheets или RAG появляются тогда, когда логика процесса понятна." }
+        { number: "1", title: "Находим пожиратели времени", text: "Смотрим, какие повторяющиеся работы каждую неделю забирают время у людей." },
+        { number: "2", title: "Выбираем безопасное начало", text: "Предпочитаем работу, где ошибка не слишком дорогая и человек может проверить результат." },
+        { number: "3", title: "Только потом строим", text: "Инструменты идут после ясного ответа: что именно должно стать проще." }
       ]
     },
     formats: {
-      kicker: "Два формата помощи",
-      title: "Начните легко или закажите аудит для решения топ-команды.",
+      kicker: "Четыре понятных шага",
+      title: "Бесплатная проверка, короткая консультация, стартовый план или AI-помощник.",
       lead:
-        "Можно начать с 10-минутной самодиагностики. Если в компании несколько AI-идей и нужен выбор для руководства, подходит аудит процессов.",
+        "Выберите шаг по тому, насколько ситуация уже ясна. Если не знаете, с чего начать, начните с бесплатной проверки. Самый малый платный шаг — 490 € + KM.",
       cards: [
         {
           label: "Легкий вход",
-          title: "Самодиагностика AI-зрелости",
-          text: "Подходит, если нужно быстро понять, готова ли компания к AI-пилоту.",
-          items: ["20 вопросов по пяти измерениям", "PDF-отчет на email", "3-5 следующих шагов", "Карта пробелов"],
+          title: "Бесплатная AI-проверка",
+          text: "Подходит, если нужно спокойно понять, есть ли смысл начинать с AI прямо сейчас.",
+          items: ["20 простых вопросов", "результат на экране", "3-5 следующих шагов", "понятная карта пробелов"],
           price: "10 минут · бесплатно",
-          cta: "Пройти самодиагностику"
+          cta: "Пройти проверку",
+          href: "/et/kiirkontroll/"
         },
         {
-          label: "Решение руководства",
-          title: "Аудит процессов",
-          text: "Подходит, если в компании 3-7 процессов-кандидатов на AI и нужно выбрать один или два пилота.",
-          items: ["Карта 15-20 процессов", "Спецификация AI-маховика для 1-2 финалистов", "Дорожная карта на 6-12 месяцев", "60-мин защита перед топ-командой"],
-          price: "1-2 недели · цена после уточнения объема",
-          cta: "Заказать аудит"
+          label: "Самый малый платный шаг",
+          title: "AI-консультация для старта",
+          text: "Подходит, если владелец хочет спокойный ответ: AI здесь реально поможет или нет.",
+          items: ["90-минутная встреча", "разбор 2-3 пожирателей времени", "одна первая работа или честное “пока не надо”", "диапазон цены следующего шага"],
+          price: "490 € + KM",
+          cta: "Обсудить"
+        },
+        {
+          label: "Есть несколько вариантов",
+          title: "AI-стартовый план",
+          text: "Подходит, если есть несколько возможных AI-сценариев и нужно выбрать одно разумное начало до внедрения.",
+          items: ["обзор повторяющихся работ", "один рекомендуемый первый AI-сценарий", "что пока не трогать", "простой план и диапазон бюджета"],
+          price: "1 900-3 900 € + KM",
+          cta: "Запросить план"
+        },
+        {
+          label: "Первая работа уже ясна",
+          title: "Небольшой AI-помощник",
+          text: "Подходит, если есть одна повторяющаяся работа, человек может проверить результат и пользу можно измерить.",
+          items: ["маленький workflow или AI-черновик", "контроль человека перед использованием", "тест на реальных примерах", "простая передача"],
+          price: "от 3 900 € + KM",
+          cta: "Посмотреть внедрение",
+          href: "/et/elluviimine/"
         }
       ]
     },
     fit: {
-      kicker: "Когда нужен аудит",
-      title: "Аудит отвечает на один вопрос: с какого процесса начинать?",
+      kicker: "Когда это подходит",
+      title: "Главный вопрос простой: какую работу AI должен упростить первой?",
       items: [
-        ["В компании 3-7 AI-идей или процессов, но нет общего приоритета.", "Аудит"],
-        ["Руководству нужно обоснование бюджета и критерии Go/No-Go.", "Аудит"],
-        ["У трех руководителей три разные AI-идеи без общей рамки выбора.", "Аудит"],
-        ["Процесс уже выбран, команда хочет строить прототип.", "Воркшоп"],
-        ["Процесс выбран, но внутренней команды внедрения нет.", "Внедрение"],
-        ["В компании меньше 50-100 человек, процессы еще в голове собственника.", "Самодиагностика или звонок"]
+        ["Есть несколько AI-идей, но непонятно, что даст самый быстрый полезный результат.", "Подходит"],
+        ["Люди каждую неделю много копируют, отвечают, сортируют или готовят одно и то же.", "Подходит"],
+        ["Перед затратами нужно понять, готовы ли данные и порядок работы.", "Подходит"],
+        ["Вы уже точно знаете, что строить, и нужен только технический исполнитель.", "Внедрение"],
+        ["Нужно обучение сотрудников AI, а не изменение повторяющейся работы.", "Обучение"],
+        ["Компания очень маленькая, и все решения пока только в голове владельца.", "Начать со звонка"]
       ]
     },
     filter: {
       badge: "Главный фильтр",
-      title: "Без петли обратной связи AI-маховик не запускается.",
+      title: "Сможем ли мы потом понять, помог AI или нет?",
       copy:
-        "Первый пилот должен быть процессом, где можно понять, было ли решение AI правильным. Если такого процесса нет, аудит все равно полезен: он экономит бюджет на пилоте, который не сможет учиться."
+        "Хорошая первая AI-работа — такая, где результат можно проверить: ответ был правильный, работа стала быстрее, клиент получил лучший ответ, ошибок стало меньше. Если это нельзя проверить, начинать там не стоит."
     },
     audit: {
-      kicker: "Как устроен аудит",
-      title: "1-2 недели на основе реальных процессов, интервью и данных.",
-      lead: "Это не сбор идей. Проверяем процессы по четырем признакам: повторяемость, петля обратной связи, цена ошибки и готовность команды.",
+      kicker: "Как делается стартовый план",
+      title: "За 1-2 недели выбираем первый AI-сценарий.",
+      lead: "Мы не пишем длинную стратегию. Говорим с ключевыми людьми, смотрим повторяющиеся работы и простым языком фиксируем: что делать, чего ожидать и чего пока избегать.",
       steps: [
-        { tag: "Неделя 1", title: "Карта процессов и маркировка", text: "Собираем 15-20 процессов. Каждый получает статус: AI-маховик, AI-ускорение без перепроектирования или не трогать." },
-        { tag: "Неделя 2", title: "Дизайн маховика для финалистов", text: "Описываем базу знаний, уровень автономии, лог решений, контроль качества и метрики для 1-2 ключевых процессов." },
-        { tag: "Финал", title: "60-мин сессия решения", text: "Разбираем результаты с CEO/COO и владельцами процессов, затем фиксируем пилот, бюджетный диапазон и точки Go/No-Go." }
+        { tag: "Шаг 1", title: "Записываем повторяющиеся работы", text: "Собираем 15-20 работ, которые забирают время: ответы клиентам, отчеты, предложения, заказы, графики, перенос данных." },
+        { tag: "Шаг 2", title: "Выбираем лучшие места для старта", text: "Смотрим частоту, затраты времени, цену ошибки и возможность проверить результат." },
+        { tag: "Шаг 3", title: "Даем ясную рекомендацию", text: "В конце одна встреча: что делать первым, что делать позже и чего сейчас не трогать." }
       ]
     },
     example: {
       kicker: "Пример решения",
-      title: "UrbanStyle: карта процессов, которая отделяет AI-маховик от простой автоматизации.",
+      title: "Пример: не каждая работа подходит как первый AI-шаг.",
       lead:
-        "Это placeholder пример из симуляции 02Signal. В реальном аудите здесь будут 15-20 процессов вашей компании и короткое обоснование статуса по каждому.",
-      statuses: { flywheel: "AI-маховик", accelerate: "AI-ускорение", pause: "не трогать" },
+        "Это простой пример. В реальном стартовом плане здесь будут работы вашей компании и короткое объяснение рядом с каждой.",
+      statuses: { first: "хороший первый шаг", accelerate: "быстрая польза", pause: "пока не надо" },
       processes: [
-        { name: "Ответы на обращения клиентов", status: "flywheel" },
-        { name: "Решения по перемещению запасов", status: "flywheel" },
+        { name: "Ответы на обращения клиентов", status: "first" },
+        { name: "Решения по перемещению запасов", status: "first" },
         { name: "Черновики кампаний", status: "accelerate" },
         { name: "Финальное согласование договоров", status: "pause" },
         { name: "Создание описаний товаров", status: "accelerate" },
-        { name: "Обработка исключений в заказах", status: "flywheel" },
+        { name: "Обработка исключений в заказах", status: "first" },
         { name: "Финансовый прогноз", status: "pause" },
         { name: "Графики персонала магазинов", status: "accelerate" }
       ],
-      legend: ["AI-маховик - запускать в ближайшем квартале", "AI-ускорение - использовать готовый сценарий", "не трогать - риск, данные или петля обратной связи не подходят"]
+      legend: ["хороший первый шаг - польза видна и результат можно проверить", "быстрая польза - можно сделать маленьким инструментом", "пока не надо - слишком рискованно, неясно или данные не готовы"]
     },
     scope: {
-      kicker: "Что не входит в аудит",
-      title: "Аудит - это выбор и дизайн пилота, не полное внедрение.",
-      includedTitle: "Аудит дает основу для решения",
-      notIncludedTitle: "Внедрение идет следующим этапом",
-      included: ["приоритизированная карта процессов", "рабочая спецификация пилота", "метрики и контроль качества", "сессия решения с руководством"],
-      notIncluded: ["полный production workflow в n8n", "утверждение политик безопасности данных", "pipeline автотестов", "обучение сети чемпионов"]
+      kicker: "Что вы получите",
+      title: "Результат — практическое решение, не толстый отчет.",
+      includedTitle: "Стартовый план дает",
+      notIncludedTitle: "Внедрение можно сделать отдельно",
+      included: ["простой список работ, которые стоит рассмотреть", "рекомендацию, что делать первым", "объяснение, почему именно эта работа", "план следующих шагов"],
+      notIncluded: ["полное техническое решение", "создание новой системы", "утверждение правил безопасности данных", "длинная программа обучения сотрудников"]
     },
     contact: {
       kicker: "Следующий шаг",
-      title: "Разберем 2-3 процесса и выберем правильный формат.",
-      lead: "Ответим в течение одного рабочего дня. Если аудит сейчас не нужен, скажем прямо и предложим более легкий формат.",
+      title: "За 30 минут поймем, какой шаг сейчас разумен.",
+      lead: "Коротко опишите, какая работа сейчас забирает время. Если стартовый план или внедрение не нужны, мы скажем это прямо.",
       emailCta: "Написать info@02signal.ai"
     },
     form: {
@@ -568,16 +625,16 @@ export const copy: Record<Lang, LandingCopy> = {
       name: "Имя *",
       role: "Должность *",
       email: "Email *",
-      need: "Что нужно? *",
-      candidates: "Сколько AI-процессов-кандидатов вы видите? *",
-      message: "Опишите 1-2 предложениями, где AI мог бы помочь *",
+      need: "Что вас интересует? *",
+      candidates: "Сколько повторяющихся работ AI мог бы упростить? *",
+      message: "Опишите 1-2 предложениями, какая работа сейчас забирает время *",
       consent: "Согласен, что 02Signal использует эти данные, чтобы связаться со мной.",
       submit: "Отправить заявку",
-      note: "Форма откроет письмо в вашей почтовой программе. Настоящий n8n webhook можно подключить следующим шагом.",
-      sizes: ["50-100", "100-500", "500+", "Менее 50", "Не знаю"],
-      needs: ["Аудит процессов", "30-мин звонок", "Самодиагностика", "Хочу обсудить другое"],
+      note: "Форма откроет письмо в вашей почтовой программе. Ответим в течение одного рабочего дня.",
+      sizes: ["1-5 человек", "6-15 человек", "16-50 человек", "50+ человек", "Не знаю"],
+      needs: ["Бесплатная проверка", "AI-консультация для старта", "AI-стартовый план", "Небольшой AI-помощник", "Хочу просто спросить"],
       candidateOptions: ["1", "2-3", "4-7", "Больше", "Не знаю"],
-      mailSubject: "Заявка 02Signal на AI-пилот"
+      mailSubject: "02Signal: первый шаг с AI"
     }
   }
 };

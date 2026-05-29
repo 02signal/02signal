@@ -123,7 +123,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ctrl_4",
     dimension: "control",
-    text: "Kas näete hiljem lihtsalt, kas sellest oli kasu: säästetud aeg, vähem vigu või kiirem vastus?"
+    text: "Kas saate pärast väikest katset vaadata ühte lihtsat näitajat: aega, vigade arvu või vastamise kiirust?"
   },
   {
     id: "ready_1",
@@ -133,7 +133,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ready_2",
     dimension: "readiness",
-    text: "Kas saate määrata ühe inimese, kes vastutab, et väike proov saaks tehtud?"
+    text: "Kas üks inimene saab vastutada, et väike proov päriselt tehtud saaks?"
   },
   {
     id: "ready_3",
@@ -143,7 +143,7 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
   {
     id: "ready_4",
     dimension: "readiness",
-    text: "Kui esimene samm on selge, kas saate 1-2 nädala jooksul otsustada: proovime või jätame praegu pooleli?"
+    text: "Kui esimene samm on selge, kas omanik või juht saab 1-2 nädala jooksul otsustada: proovime või jätame praegu pooleli?"
   }
 ];
 
