@@ -62,8 +62,12 @@ const { form } = Astro.props;
     </div>
   </div>
   <label class="checkbox">
-    <input type="checkbox" required />
-    <span>{form.consent}</span>
+    <input type="checkbox" name="contactConsent" required />
+    <span>{form.consent} <a href="/et/privaatsus/">Privaatsus</a></span>
+  </label>
+  <label class="checkbox">
+    <input type="checkbox" name="fundingUpdates" />
+    <span>{form.fundingConsent}</span>
   </label>
   <button class="btn btn-primary" type="submit">{form.submit}</button>
   <p class="form-note">{form.note}</p>
@@ -85,6 +89,7 @@ const { form } = Astro.props;
         `${labels.labelEmail}: ${data.get("email")}`,
         `${labels.labelNeed}: ${data.get("need")}`,
         `${labels.labelCandidates}: ${data.get("candidates")}`,
+        `Soovin toetuste ja rahastusvõimaluste teateid: ${data.get("fundingUpdates") === "on" ? "jah" : "ei"}`,
         "",
         `${labels.labelMessage}:`,
         `${data.get("message")}`

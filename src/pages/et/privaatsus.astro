@@ -15,7 +15,7 @@ const nav: LandingCopy["nav"] = [
 <BaseLayout
   lang="et"
   title="02Signal | Privaatsus"
-  description="Kuidas 02Signal kasutab kiirkontrolli ja kontaktivormi andmeid."
+  description="Kuidas Ettevõtluskeskus OÜ kasutab 02Signal, Automatiseerimine.ee ja Digiteekaart.ee vormide andmeid."
   path="/et/privaatsus/"
 >
   <Header lang="et" nav={nav} />
@@ -23,29 +23,38 @@ const nav: LandingCopy["nav"] = [
     <section class="white-band legal-page">
       <div class="section-inner">
         <span class="section-kicker">Privaatsus</span>
-        <h1>Kasutame teie andmeid ainult ühenduse võtmiseks ja kokkulepitud töö ettevalmistamiseks.</h1>
+        <h1>Kasutame teie andmeid ainult selge eesmärgiga: vastata, hinnata sobivust ja valmistada ette järgmine mõistlik samm.</h1>
 
         <div class="legal-copy">
+          <h2>Kes andmeid töötleb?</h2>
+          <p>Vastutav töötleja on Ettevõtluskeskus OÜ. 02Signal, Automatiseerimine.ee ja Digiteekaart.ee on Ettevõtluskeskus OÜ müügi- ja teenusekanalid.</p>
+
           <h2>Milliseid andmeid küsime?</h2>
-          <p>Kiirkontrollis küsime ettevõtte nime, teie nime, e-maili, soovi korral telefoni ning vastuseid AI valmisoleku küsimustele.</p>
+          <p>Küsime tavaliselt ettevõtte nime, registrikoodi, teie nime, ametit, e-maili, soovi korral telefoni ning vormi või küsimustiku vastuseid. Digiteekaardi eelhindamisel võime küsida ka ettevõtte suurust, müügitulu vahemikku, toetuse huvi ja teie enda hinnangut sobivusele.</p>
 
           <h2>Milleks kasutame?</h2>
-          <p>Kasutame andmeid selleks, et näidata teile tulemust, võtta teiega ühendust ja valmistada ette mõistlik järgmine samm. Näiteks 30-90 minutiline arutelu, AI alguse nõu või stardiplaan.</p>
+          <p>Kasutame andmeid selleks, et näidata tulemust, võtta ühendust, hinnata esmast sobivust ning valmistada ette pakkumine, kõne või järgmine töö. Näiteks AI kiirkontroll, automatiseerimise nõu või digitaliseerimise teekaardi eelhindamine.</p>
+
+          <h2>Toetuste ja rahastusvõimaluste teated</h2>
+          <p>Kui annate eraldi nõusoleku, võime saata teile e-mailiga infot avanevate toetuste, rahastusmeetmete ja praktiliste digiteemade kohta. See nõusolek on vabatahtlik. Saate sellest igal ajal loobuda, kirjutades aadressile <a href="mailto:info@02signal.ai">info@02signal.ai</a>.</p>
+
+          <h2>Õiguslik alus</h2>
+          <p>Kui küsite pakkumist või eelhinnangut, töötleme andmeid teie taotluse täitmiseks ja lepingu ettevalmistamiseks. Kui saadame toetuste või rahastusvõimaluste infot, tugineme teie eraldi nõusolekule. Veebilehe turvalisuse ja toimimise jaoks töötleme piiratud tehnilisi andmeid õigustatud huvi alusel.</p>
 
           <h2>Kus andmeid hoiame?</h2>
-          <p>Vormi vastused salvestatakse 02Signal kontrollitud andmebaasi. Teavitus võib tulla meile e-mailiga Resend teenuse kaudu. Secret’e ja API võtmeid ei hoita brauseris.</p>
+          <p>Vormi vastused salvestatakse 02Signal kontrollitud andmebaasi Supabase keskkonnas. Teavitus võib tulla meile e-mailiga Resend teenuse kaudu. Veebilehti majutab Vercel. Mõõtmiseks võime kasutada Google Analyticsit ainult siis, kui olete mõõtmise lubanud. Secret’e, API võtmeid ja tooreid väliste süsteemide vastuseid ei hoita brauseris.</p>
 
           <h2>Kellega jagame?</h2>
-          <p>Me ei müü ega jaga teie kontakte kolmandatele osapooltele. Kasutame tehnilisi teenusepakkujaid ainult vormi vastuvõtmiseks, andmete hoidmiseks ja teavituse saatmiseks.</p>
+          <p>Me ei müü teie kontakte ega jaga neid turunduspartneritele. Kasutame tehnilisi teenusepakkujaid ainult vormi vastuvõtmiseks, andmete hoidmiseks, veebilehe majutamiseks, mõõtmiseks ja teavituste saatmiseks.</p>
 
           <h2>Kui kaua hoiame?</h2>
-          <p>Hoiame kiirkontrolli andmeid kuni 12 kuud, kui koostööni ei jõuta. Kui algab tasuline töö, säilitatakse vajalikud andmed lepingu ja raamatupidamise reeglite järgi.</p>
+          <p>Kui koostööni ei jõuta, hoiame kontakti ja vormi vastuseid kuni 12 kuud. Kui algab tasuline töö, säilitatakse vajalikud andmed lepingu ja raamatupidamise reeglite järgi. Toetuste ja rahastusvõimaluste teavituste nõusolekut hoiame kuni loobumiseni, kuid vaatame nimekirja perioodiliselt üle ja eemaldame passiivsed kontaktid.</p>
 
           <h2>Kuidas saab andmeid kustutada?</h2>
-          <p>Kirjutage aadressile <a href="mailto:info@02signal.ai">info@02signal.ai</a>. Saame teie kontaktiga seotud kiirkontrolli andmed kustutada või parandada.</p>
+          <p>Kirjutage aadressile <a href="mailto:info@02signal.ai">info@02signal.ai</a>. Saate küsida, milliseid andmeid hoiame, paluda neid parandada, kustutada või piirata nende kasutamist.</p>
 
-          <h2>Vastutav ettevõte</h2>
-          <p>Ettevõtluskeskus OÜ kasutab 02Signal brändi AI ja automatiseerimise teenuste pakkumiseks.</p>
+          <h2>Küpsised ja mõõtmine</h2>
+          <p>Google Analytics töötab 02Signal lehel ainult siis, kui lubate mõõtmise. Mõõtmine aitab näha, millised lehed ja nupud aitavad külastajal järgmise sammuni jõuda. Kui kasutame Cloudflare’i või muud turvateenust, võib see lisada tehnilisi küpsiseid veebilehe kaitseks ja toimimiseks.</p>
         </div>
       </div>
     </section>

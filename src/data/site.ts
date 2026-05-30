@@ -90,6 +90,7 @@ export type LandingCopy = {
     candidates: string;
     message: string;
     consent: string;
+    fundingConsent: string;
     submit: string;
     note: string;
     sizes: string[];
@@ -305,6 +306,7 @@ export const copy: Record<Lang, LandingCopy> = {
       candidates: "Mitu korduvat tööd võiks AI-ga lihtsamaks teha? *",
       message: "Kirjeldage 1-2 lausega, milline töö praegu aega võtab *",
       consent: "Nõustun, et 02Signal kasutab neid andmeid minuga ühenduse võtmiseks.",
+      fundingConsent: "Soovin saada e-mailiga infot avanevate toetuste ja rahastusvõimaluste kohta.",
       submit: "Saada päring",
       note: "Vorm avab e-kirja teie meiliprogrammis. Vastame ühe tööpäeva jooksul.",
       sizes: ["1-5 inimest", "6-15 inimest", "16-50 inimest", "50+ inimest", "Ei tea"],
@@ -467,6 +469,7 @@ export const copy: Record<Lang, LandingCopy> = {
       candidates: "How many repeated tasks could AI make easier? *",
       message: "Describe in 1-2 sentences what work takes time now *",
       consent: "I agree that 02Signal may use this data to contact me.",
+      fundingConsent: "I would like to receive email updates about grants and funding opportunities.",
       submit: "Send request",
       note: "The form opens an email in your mail app. We reply within one business day.",
       sizes: ["1-5 people", "6-15 people", "16-50 people", "50+ people", "Not sure"],
@@ -629,6 +632,7 @@ export const copy: Record<Lang, LandingCopy> = {
       candidates: "Сколько повторяющихся работ AI мог бы упростить? *",
       message: "Опишите 1-2 предложениями, какая работа сейчас забирает время *",
       consent: "Согласен, что 02Signal использует эти данные, чтобы связаться со мной.",
+      fundingConsent: "Хочу получать по e-mail информацию о грантах и возможностях финансирования.",
       submit: "Отправить заявку",
       note: "Форма откроет письмо в вашей почтовой программе. Ответим в течение одного рабочего дня.",
       sizes: ["1-5 человек", "6-15 человек", "16-50 человек", "50+ человек", "Не знаю"],

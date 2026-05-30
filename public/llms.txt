@@ -2,7 +2,7 @@
 
 > 02Signal aitab Eesti mikro- ja väikeettevõttel valida esimese mõistliku AI kasutuskoha ja ehitada väikese praktilise AI abilise. Fookus on korduvatel töödel, inimese kontrollil ja selgelt mõõdetaval kasul.
 
-Last updated: 2026-05-29
+Last updated: 2026-05-30
 
 ## Kes me oleme
 
@@ -36,6 +36,7 @@ Me ei soovita alustada suure AI strateegia või riskantse automaatse otsusega. E
 - Sobib: ettevõtte omanikule, kes tahab aru saada, kas AI-ga on mõistlik praegu alustada
 - Tulemus: skoor, radar-graafik, lünkade kaart ja soovitatud järgmine samm
 - Andmed: kontakt ja vastused salvestatakse Supabase andmebaasi ning tulemus saadetakse 02Signalile e-mailiga
+- Nõusolekud: ühenduse võtmiseks vajalik nõusolek on eraldi; toetuste ja rahastusvõimaluste e-mailid on vabatahtlik eraldi valik
 
 ### AI alguse nõu
 
